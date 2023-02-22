@@ -1,6 +1,11 @@
-import PropTypes from 'prop-types';
+import { ApplicationHeader } from '@/components/ApplicationHeader/ApplicationHeader';
+import React from 'react';
 
-const ApplicationLayout = ({ children }) => (
+type Props = {
+  children: React.ReactNode;
+};
+
+const ApplicationLayout: React.FC<Props> = ({ children }) => (
   <>
     <ApplicationHeader />
     {children}
@@ -8,7 +13,3 @@ const ApplicationLayout = ({ children }) => (
 );
 
 export { ApplicationLayout };
-
-ApplicationLayout.propTypes = {
-  children: PropTypes.element.isRequired,
-};
