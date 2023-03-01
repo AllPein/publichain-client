@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { UserAction } from '@/store/user/UserAction';
@@ -6,17 +6,11 @@ import { UserAction } from '@/store/user/UserAction';
 import * as UI from './ConnectWalletButton.styles';
 
 const ConnectWalletButton = () => {
-  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (user) {
-      console.log(user);
-      dispatch(UserAction.setUserInfo(null));
-    }
-  }, []);
-
-  const handleConnectWalletClick = () => {};
+  const handleConnectWalletClick = () => {
+    dispatch(UserAction.initConnect('sEdVQSP17n42nBXcV5a1eGqAPycNvuo'));
+  };
 
   return (
     <UI.StyledButton type="primary" onClick={handleConnectWalletClick}>

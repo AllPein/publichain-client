@@ -4,16 +4,20 @@ import {
   CombinedState,
   compose,
   createStore,
+  Dispatch,
   Reducer,
   Store,
 } from 'redux';
-import thunk from 'redux-thunk';
 import * as logger from 'redux-logger';
+import { createEpicMiddleware } from 'redux-observable';
 import actionCreatorFactory, { AnyAction } from 'typescript-fsa';
 
-import appReducer from './Reducers';
-import { RootState } from './StoreTypes';
+import { projectService } from '@/services/ProjectService';
+import rootEpic from '@/store/rootEpic';
 import { history } from '@/utils/history';
+
+import appReducer from './Reducers';
+import { RootState, StoreDependencies } from './StoreTypes';
 
 const factory = actionCreatorFactory('root');
 
@@ -22,12 +26,26 @@ export const RootStoreAction = {
 };
 
 const configureStore = (): Store<CombinedState<RootState>, AnyAction> => {
+  const epicMiddleware = createEpicMiddleware<
+    AnyAction,
+    AnyAction,
+    RootState,
+    StoreDependencies
+  >({
+    dependencies: {
+      projectService,
+      history,
+
+      get dispatch(): Dispatch<AnyAction> {
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        return store.dispatch;
+      },
+    },
+  });
   const middleware =
     process.env.NODE_ENV === 'development'
-      ? [logger.createLogger(), routerMiddleware(history), thunk]
-      : [routerMiddleware(history), thunk];
-
-  /** В случае action RESET_STORE, возвращаем стору в изначальное состояние, оставляя только вебсокеты */
+      ? [logger.createLogger(), routerMiddleware(history), epicMiddleware]
+      : [routerMiddleware(history), epicMiddleware];
 
   const rootReducer = (
     state: CombinedState<RootState>,
@@ -55,6 +73,8 @@ const configureStore = (): Store<CombinedState<RootState>, AnyAction> => {
       ? enhancer
       : applyMiddleware(...middleware),
   );
+
+  epicMiddleware.run(rootEpic);
 
   return store;
 };

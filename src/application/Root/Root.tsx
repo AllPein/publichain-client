@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react';
 import { Redirect, Switch, Route } from 'react-router-dom';
-import { lazy } from '@/utils/lazy';
+
 import { ApplicationLayout } from '@/application/ApplicationLayout/ApplicationLayout';
 import { CenteredSpin } from '@/components/Spin/CenteredSpin';
+import { lazy } from '@/utils/lazy';
 
 const VaultsPage = lazy(
   () => import('@/pages/VaultsPage/VaultsPage'),

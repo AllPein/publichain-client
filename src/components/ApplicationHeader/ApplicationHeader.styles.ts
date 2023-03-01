@@ -20,8 +20,11 @@ const Header = styled.div`
   }
 `;
 
-const StyledLogoSearch = styled.div``;
+const Logo = styled.img`
+  width: 5rem;
+`;
 
+const StyledLogoSearch = styled.div``;
 const StyledProfileUpload = styled.div``;
 
-export { Header, StyledLogoSearch, StyledProfileUpload };
+export { Header, Logo, StyledLogoSearch, StyledProfileUpload };
