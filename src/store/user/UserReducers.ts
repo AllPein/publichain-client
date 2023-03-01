@@ -1,20 +1,17 @@
-import { User } from "@/types/UserTypes";
-import { reducerWithInitialState } from "typescript-fsa-reducers";
+import { User } from '@/types/UserTypes';
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import { UserAction, UserStore } from "./UserAction";
+import { UserAction, UserStore } from './UserAction';
 
 export const canvasSettingsStoreInitialState: UserStore = {
-  userInfo: {
-    username: "",
-    walletId: "",
-  },
+  userInfo: null,
   isLoggedId: false,
 };
 
 export const UserReducers = reducerWithInitialState<UserStore>(
-  canvasSettingsStoreInitialState
+  canvasSettingsStoreInitialState,
 )
-  .case(UserAction.setUserInfo, (state: UserStore, userInfo: User) => {
+  .case(UserAction.setUserInfo, (state: UserStore, userInfo: User | null) => {
     return {
       ...state,
       userInfo,

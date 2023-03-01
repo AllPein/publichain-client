@@ -1,5 +1,4 @@
 import { routerMiddleware } from 'connected-react-router';
-import { createBrowserHistory } from 'history';
 import {
   applyMiddleware,
   CombinedState,
@@ -14,6 +13,7 @@ import actionCreatorFactory, { AnyAction } from 'typescript-fsa';
 
 import appReducer from './Reducers';
 import { RootState } from './StoreTypes';
+import { history } from '@/utils/history';
 
 const factory = actionCreatorFactory('root');
 
@@ -22,8 +22,6 @@ export const RootStoreAction = {
 };
 
 const configureStore = (): Store<CombinedState<RootState>, AnyAction> => {
-  const history = createBrowserHistory();
-
   const middleware =
     process.env.NODE_ENV === 'development'
       ? [logger.createLogger(), routerMiddleware(history), thunk]

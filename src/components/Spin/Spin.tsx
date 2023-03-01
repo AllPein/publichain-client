@@ -1,5 +1,6 @@
-import { Spin as AntdSpin } from 'antd';
 import React from 'react';
+
+import { Spin as AntdSpin } from 'antd';
 
 type Props = {
   children?: React.ReactNode;

@@ -1,4 +1,4 @@
-const prettierConfig = require('./.prettierrc');
+const prettierConfig = require('./.prettierrc.js');
 
 module.exports = {
   env: {
@@ -46,7 +46,10 @@ module.exports = {
       },
       settings: {
         'import/resolver': {
-          typescript: {},
+          alias: {
+            extensions: ['.ts', '.tsx'],
+            map: [['@', './src/*']],
+          },
         },
       },
     },

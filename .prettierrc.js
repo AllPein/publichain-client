@@ -10,4 +10,12 @@ module.exports = {
   jsxBracketSameLine: false,
   useTabs: false,
   endOfLine: 'auto',
+  importOrder: [
+    '^react(.*)',
+    'antd/(.*)',
+    '<THIRD_PARTY_MODULES>',
+    '@/(.*)',
+    '^[./]',
+  ],
+  importOrderSeparation: true,
 };

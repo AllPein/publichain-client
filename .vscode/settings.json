@@ -1,0 +1,27 @@
+{
+  "cSpell.words": ["Bento", "reduxjs"],
+  "prettier.configPath": ".prettierrc.js",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "css.validate": true,
+  "less.validate": false,
+  "scss.validate": false,
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact"
+  ],
+  "emmet.includeLanguages": {
+    "postcss": "css"
+  },
+  "remote.SSH.localServerDownload": "always",
+  "testcafeTestRunner.useHeadlessMode": true,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "cSpell.language": "en,ru",
+  "cSpell.enabled": true
+}

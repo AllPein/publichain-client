@@ -1,6 +1,7 @@
+import { Spin } from '@/components/Spin/Spin';
+
 import React from 'react';
 
-import { Spin } from '@/components/Spin/Spin';
 import { StyledCenteredSpinWrapper } from './CenteredSpin.styles';
 
 const CenteredSpin = ({ spinning = false }) => (

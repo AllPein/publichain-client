@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-const Header = styled.header`
-  padding: 0.8rem 4.9rem 0.8rem 4.9rem;
-  width: 100%;
+const Header = styled.div`
+  padding: 0.8rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,21 +20,8 @@ const Header = styled.header`
   }
 `;
 
-const StyledLogoSearch = styled.div`
-  display: flex;
-  align-items: left;
-  width: 60%;
+const StyledLogoSearch = styled.div``;
 
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const StyledProfileUpload = styled.div`
-  display: flex;
-  align-items: center;
-  width: 40%;
-  justify-content: flex-end;
-`;
+const StyledProfileUpload = styled.div``;
 
 export { Header, StyledLogoSearch, StyledProfileUpload };
