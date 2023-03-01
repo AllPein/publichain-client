@@ -24,18 +24,13 @@ export type Wallet = {
 };
 
 export type AccountInfo = {
-  account_data: {
-    Account: string;
-    Balance: string;
-    Flags: number;
-    LedgerEntryType: string;
-    OwnerCount: string;
-    PreviousTxnID: string;
-    PreviousTxnLgrSeq: number;
-    Sequence: number;
-    index: string;
-  };
-  ledger_hash: string;
-  ledger_index: string;
-  validate: boolean;
+  sub: string;
+  picture: string;
+  account: string;
+  name?: string;
+  domain?: string;
+  blocked: boolean;
+  source: string;
+  kycApproved: boolean;
+  proSubscription: boolean;
 };

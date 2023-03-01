@@ -10,8 +10,9 @@ export type UserStore = {
 };
 
 export const UserAction = {
-  initConnect: factory<string | undefined>('INIT_CONNECT'),
+  initConnect: factory('INIT_CONNECT'),
   setAccountInfo: factory<AccountInfo>('SET_ACCOUNT_INFO'),
   setIsLoggedIn: factory<boolean>('SET_IS_LOGGED_IN'),
   resetState: factory('RESET_STATE'),
+  initWallet: factory('INIT_WALLET'),
 };

@@ -16,7 +16,7 @@ export const handleInitGetAccountInfo: Epic<
 > = (action$, state$, { projectService, dispatch }) =>
   action$.pipe(
     ofAction(UserAction.initConnect),
-    switchMap(({ payload: seed }) => from(projectService.connect(seed))),
+    switchMap(({ payload: seed }) => from(projectService.login(seed))),
     tap((accountInfo: AccountInfo) => {
       dispatch(UserAction.setAccountInfo(accountInfo));
     }),

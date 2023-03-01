@@ -40,7 +40,7 @@ const ApplicationHeader = () => {
     return (
       <Dropdown menu={{ items }} trigger={['click']}>
         <Space>
-          {accountInfo?.account_data.Account.slice(10)}...
+          {accountInfo?.account.slice(10)}...
           <DownOutlined />
         </Space>
       </Dropdown>
