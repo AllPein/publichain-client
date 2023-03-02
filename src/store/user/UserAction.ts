@@ -11,6 +11,7 @@ export type UserStore = {
 
 export const UserAction = {
   initConnect: factory('INIT_CONNECT'),
+  initMint: factory('INIT_MINT'),
   initRetrieveUser: factory<AccountInfo>('INIT_RETRIEVE_USER'),
   setAccountInfo: factory<AccountInfo | null>('SET_ACCOUNT_INFO'),
   setIsLoggedIn: factory<boolean>('SET_IS_LOGGED_IN'),

@@ -5,6 +5,7 @@ import { Provider } from '@/application/Provider/Provider';
 import { Root } from '@/application/Root/Root';
 import { useMount } from '@/hooks/useMount';
 import { projectService } from '@/services/ProjectService';
+import { AxiosClient } from '@/services/axios-client';
 import { xrpl, XummPkce } from '@/utils/window';
 
 const App = () => {
@@ -13,7 +14,10 @@ const App = () => {
       try {
         const xrplClient = new xrpl.Client(import.meta.env.VITE_LEDGER_NET);
         const xumm = new XummPkce(import.meta.env.VITE_XUMM_API_KEY);
-        await projectService.init(xrplClient, xumm);
+        const axiosClient = new AxiosClient();
+        axiosClient.init(import.meta.env.VITE_BASE_API_URL);
+
+        await projectService.init(xrplClient, xumm, axiosClient);
       } catch (e) {
         throw Error('Service has been thrown error at initialized step');
       }
