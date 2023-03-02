@@ -1,8 +1,11 @@
-import { RootState } from "@/store/StoreTypes";
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import { UserReducers } from "./user/UserReducers";
+import { RootState } from '@/store/StoreTypes';
+import { LoaderReducers } from '@/store/loader/LoaderReducers';
+
+import { UserReducers } from './user/UserReducers';
 
 export default combineReducers<RootState>({
   user: UserReducers,
+  loader: LoaderReducers,
 });

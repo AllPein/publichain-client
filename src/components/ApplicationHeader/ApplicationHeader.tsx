@@ -1,51 +1,32 @@
-import React, { useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
-
-import { DownOutlined } from '@ant-design/icons';
-import { Dropdown, MenuProps, Space } from 'antd';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Logo from '@/assets/icons/logo-writty.svg';
+import { AccountMenu } from '@/components/AccountMenu/AccountMenu';
 import { ConnectWalletButton } from '@/components/ConnectWalletButton/ConnectWalletButton';
+import { useMount } from '@/hooks/useMount';
 import { projectService } from '@/services/ProjectService';
-import { selectUserInfo } from '@/store/user/UserSelectors';
-import { xrpl } from '@/xrpl';
+import { selectAuthLoading } from '@/store/loader/LoaderSelectors';
+import { selectIsLoggedIn, selectUserInfo } from '@/store/user/UserSelectors';
+import { listenXummAuth } from '@/utils/xummHelper';
 
 import * as UI from './ApplicationHeader.styles';
 
 const ApplicationHeader = () => {
+  const dispatch = useDispatch();
   const accountInfo = useSelector(selectUserInfo);
-  useEffect(() => {
-    projectService.init(new xrpl.Client('wss://s.altnet.rippletest.net:51233'));
-  }, []);
+  const isLoading = useSelector(selectAuthLoading);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const items: MenuProps['items'] = [
-    {
-      label: 'Аккаунт',
-      key: '0',
-    },
-    {
-      label: 'Мои статьи',
-      key: '1',
-    },
-    {
-      type: 'divider',
-    },
-    {
-      label: 'Выйти',
-      key: '3',
-    },
-  ];
+  useMount(() => {
+    const authenticateXumm = async () => {
+      await listenXummAuth(projectService.xumm, dispatch);
+    };
 
-  const renderAccountMenu = useMemo(() => {
-    return (
-      <Dropdown menu={{ items }} trigger={['click']}>
-        <Space>
-          {accountInfo?.account.slice(10)}...
-          <DownOutlined />
-        </Space>
-      </Dropdown>
-    );
-  }, [accountInfo]);
+    if (!accountInfo) {
+      authenticateXumm();
+    }
+  });
 
   return (
     <UI.Header>
@@ -53,7 +34,11 @@ const ApplicationHeader = () => {
         <UI.Logo src={Logo} />
       </UI.StyledLogoSearch>
       <UI.StyledProfileUpload>
-        {accountInfo ? renderAccountMenu : <ConnectWalletButton />}
+        {isLoggedIn ? (
+          <AccountMenu accountInfo={accountInfo} />
+        ) : (
+          <ConnectWalletButton loading={isLoading} />
+        )}
       </UI.StyledProfileUpload>
     </UI.Header>
   );

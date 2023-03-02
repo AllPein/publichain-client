@@ -1,7 +1,9 @@
 import { AccountInfo } from '@/store/StoreTypes';
+import { XummPkce } from '@/utils/window';
 
 export interface IProjectService {
   client: any;
+  xumm: typeof XummPkce;
 
-  login(seed: string | undefined): Promise<AccountInfo>;
+  login(): Promise<AccountInfo>;
 }

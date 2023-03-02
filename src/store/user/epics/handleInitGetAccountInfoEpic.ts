@@ -16,10 +16,12 @@ export const handleInitGetAccountInfo: Epic<
 > = (action$, state$, { projectService, dispatch }) =>
   action$.pipe(
     ofAction(UserAction.initConnect),
-    switchMap(({ payload: seed }) => from(projectService.login(seed))),
+    switchMap(() => from(projectService.login())),
     tap((accountInfo: AccountInfo) => {
+      if (accountInfo) {
+        dispatch(UserAction.setIsLoggedIn(true));
+      }
       dispatch(UserAction.setAccountInfo(accountInfo));
     }),
-
     ignoreElements(),
   );

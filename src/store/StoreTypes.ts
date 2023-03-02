@@ -2,11 +2,13 @@ import { History } from 'history';
 import { AnyAction, Dispatch } from 'redux';
 
 import { IProjectService } from '@/services/types';
+import { LoaderStore } from '@/store/loader/LoaderActions';
 
 import { UserStore } from './user/UserAction';
 
 export interface RootState {
   user: UserStore;
+  loader: LoaderStore;
 }
 
 export type StoreDependencies = {

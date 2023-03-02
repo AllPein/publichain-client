@@ -1,26 +1,27 @@
 import { IProjectService } from '@/services/types';
 import { AccountInfo } from '@/store/StoreTypes';
+import { XummPkce } from '@/utils/window';
 
 class ProjectService implements IProjectService {
   #client: any;
+  #xumm: typeof XummPkce;
 
   get client() {
     return this.#client as any;
   }
 
-  init(client) {
-    this.#client = client;
-    client.connect();
+  get xumm() {
+    return this.#xumm as any;
   }
 
-  // sEdVQSP17n42nBXcV5a1eGqAPycNvuo
-  async login(): Promise<AccountInfo> {
-    // @ts-ignore
-    const { XummPkce } = window;
-    const auth = new XummPkce('de321219-87c2-4201-8bac-741b980ce180');
+  async init(client, xumm) {
+    this.#client = client;
+    this.#xumm = xumm;
+    await client.connect();
+  }
 
-    const { me } = await auth.authorize();
-    console.log(me);
+  async login(): Promise<AccountInfo> {
+    const { me } = await this.#xumm.authorize();
     return me;
   }
 }
