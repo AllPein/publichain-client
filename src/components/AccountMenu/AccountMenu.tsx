@@ -39,7 +39,7 @@ const AccountMenu = ({ accountInfo }) => {
   return (
     <Dropdown menu={{ items }} trigger={['click']}>
       <Space>
-        {accountInfo?.account.slice(10)}...
+        {accountInfo?.account.slice(0, 10)}...
         <DownOutlined />
       </Space>
     </Dropdown>
