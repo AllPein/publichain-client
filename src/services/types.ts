@@ -48,6 +48,6 @@ export interface IProjectService {
   xumm: typeof XummPkce;
   axiosClient: AxiosClient;
 
-  mint(wallet): Promise<any>;
+  mint(wallet): Promise<void>;
   login(): Promise<AccountInfo>;
 }
