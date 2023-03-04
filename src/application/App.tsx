@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { GlobalStyles } from '@/application/GlobalStyles';
 import { Provider } from '@/application/Provider/Provider';
 import { Root } from '@/application/Root/Root';
 import { Modals } from '@/components/Modals/Modals';
@@ -29,7 +28,6 @@ const App = () => {
 
   return (
     <Provider>
-      <GlobalStyles />
       <Root />
       <Modals />
     </Provider>
