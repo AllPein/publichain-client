@@ -3,6 +3,7 @@ import React from 'react';
 import { GlobalStyles } from '@/application/GlobalStyles';
 import { Provider } from '@/application/Provider/Provider';
 import { Root } from '@/application/Root/Root';
+import { Modals } from '@/components/Modals/Modals';
 import { useMount } from '@/hooks/useMount';
 import { projectService } from '@/services/ProjectService';
 import { AxiosClient } from '@/services/axios-client';
@@ -19,7 +20,7 @@ const App = () => {
 
         await projectService.init(xrplClient, xumm, axiosClient);
       } catch (e) {
-        throw Error('Service has been thrown error at initialized step');
+        throw e;
       }
     };
 
@@ -30,6 +31,7 @@ const App = () => {
     <Provider>
       <GlobalStyles />
       <Root />
+      <Modals />
     </Provider>
   );
 };

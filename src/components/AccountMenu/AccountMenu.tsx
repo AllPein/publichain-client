@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { DownOutlined } from '@ant-design/icons';
-import { Dropdown, MenuProps, Space } from 'antd';
+import { Button, Dropdown, MenuProps, Space } from 'antd';
 
 import { UserAction } from '@/store/user/UserAction';
 
@@ -10,9 +10,7 @@ const AccountMenu = ({ accountInfo }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.removeItem('XummPkceJwt');
-    localStorage.removeItem('pkce_state');
-    localStorage.removeItem('pkce_code_verifier');
+    localStorage.removeItem('token');
 
     dispatch(UserAction.setAccountInfo(null));
     dispatch(UserAction.setIsLoggedIn(false));
@@ -38,10 +36,12 @@ const AccountMenu = ({ accountInfo }) => {
 
   return (
     <Dropdown menu={{ items }} trigger={['click']}>
-      <Space>
-        {accountInfo?.account.slice(0, 10)}...
-        <DownOutlined />
-      </Space>
+      <Button size="large">
+        <Space>
+          {accountInfo?.name}
+          <DownOutlined />
+        </Space>
+      </Button>
     </Dropdown>
   );
 };

@@ -34,9 +34,11 @@
     "redux-thunk": "^2.4.2",
     "reselect": "^4.1.7",
     "rxjs": "^7.8.0",
+    "socket.io-client": "^4.6.1",
     "styled-components": "^5.3.6",
     "typescript-fsa": "^3.0.0",
-    "typescript-fsa-reducers": "^1.2.2"
+    "typescript-fsa-reducers": "^1.2.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",

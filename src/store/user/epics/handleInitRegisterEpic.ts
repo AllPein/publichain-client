@@ -1,16 +1,13 @@
-/* eslint-disable import/no-cycle */
 import { Epic } from 'redux-observable';
 import { filter, ignoreElements, tap } from 'rxjs/operators';
 import { AnyAction } from 'typescript-fsa';
 
 import { ofAction } from '@/operators/ofAction';
 import { ModalActions } from '@/store/Modal/ModalActions';
-import { AccountInfo, RootState, StoreDependencies } from '@/store/StoreTypes';
-import { LoaderAction } from '@/store/loader/LoaderActions';
-import { UserAction } from '@/store/user/UserAction';
+import { RootState, StoreDependencies } from '@/store/StoreTypes';
 import { WebsocketAction } from '@/store/websocket/websocketActions';
 
-export const handleInitRetrieveUser: Epic<
+export const handleInitRegister: Epic<
   AnyAction,
   AnyAction,
   RootState,
@@ -18,13 +15,17 @@ export const handleInitRetrieveUser: Epic<
 > = (action$, state$, { dispatch }) =>
   action$.pipe(
     ofAction(WebsocketAction.handleMessage),
-    filter(({ payload }) => payload.event === 'USER_INFO'),
+    filter(({ payload }) => payload.event === 'REGISTER'),
     tap(({ payload }) => {
-      localStorage.setItem('token', (payload.data as AccountInfo).token);
-      dispatch(UserAction.setAccountInfo(payload.data as AccountInfo));
-      dispatch(UserAction.setIsLoggedIn(true));
       dispatch(ModalActions.closeModal('login'));
+      dispatch(
+        ModalActions.openModal({
+          key: 'register',
+          payload: {
+            address: payload.data as string,
+          },
+        }),
+      );
     }),
-    tap(() => dispatch(LoaderAction.setLoaded('auth'))),
     ignoreElements(),
   );

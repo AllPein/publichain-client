@@ -1,5 +1,12 @@
-import { AxiosClient, IProjectService } from '@/services/types';
-import { AccountInfo } from '@/store/StoreTypes';
+import { AxiosResponse } from 'axios';
+
+import {
+  AuthResponse,
+  AxiosClient,
+  IProjectService,
+  LoginRequest,
+  LoginResponse,
+} from '@/services/types';
 import { jwt, XummPkce, XummSdkJwt } from '@/utils/window';
 
 class ProjectService implements IProjectService {
@@ -29,11 +36,21 @@ class ProjectService implements IProjectService {
     await client.connect();
   }
 
-  async login(): Promise<AccountInfo> {
-    const { me } = await this.#xumm.authorize();
+  async authorizeWithXumm(): Promise<AuthResponse> {
+    const { jwt, me } = await this.#xumm.authorize();
 
-    return me;
+    return { jwt, me };
   }
+
+  // async login(): Promise<AxiosResponse<string>> {
+  //   try {
+  //     const res = await this.#axiosClient.get('/auth/login');
+
+  //     return res.data as AxiosResponse<string>;
+  //   } catch (err: any) {
+  //     return err.response.data.error;
+  //   }
+  // }
 
   async mint(wallet): Promise<void> {
     const Sdk = new XummSdkJwt(jwt);

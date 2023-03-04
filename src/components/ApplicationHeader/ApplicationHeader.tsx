@@ -5,10 +5,9 @@ import Logo from '@/assets/icons/logo-writty.svg';
 import { AccountMenu } from '@/components/AccountMenu/AccountMenu';
 import { ConnectWalletButton } from '@/components/ConnectWalletButton/ConnectWalletButton';
 import { useMount } from '@/hooks/useMount';
-import { projectService } from '@/services/ProjectService';
 import { selectAuthLoading } from '@/store/loader/LoaderSelectors';
 import { selectIsLoggedIn, selectUserInfo } from '@/store/user/UserSelectors';
-import { listenXummAuth } from '@/utils/xummHelper';
+import { createWebsocket } from '@/utils/WebsocketHelper';
 
 import * as UI from './ApplicationHeader.styles';
 
@@ -19,13 +18,11 @@ const ApplicationHeader = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useMount(() => {
-    const authenticateXumm = async () => {
-      await listenXummAuth(projectService.xumm, dispatch);
+    const init = async () => {
+      await createWebsocket({ dispatch });
     };
 
-    if (!accountInfo) {
-      authenticateXumm();
-    }
+    init();
   });
 
   return (

@@ -1,9 +1,11 @@
-import { handleInitGetAccountInfo } from '@/store/user/epics/handleInitGetAccountInfoEpic';
+import { handleInitLogin } from '@/store/user/epics/handleInitLoginEpic';
+import { handleInitRegister } from '@/store/user/epics/handleInitRegisterEpic';
 import { handleInitRetrieveUser } from '@/store/user/epics/handleInitRetrieveUserEpic';
 import { handleMint } from '@/store/user/epics/handleMint';
 
 export const UserEpics = [
-  handleInitGetAccountInfo,
+  handleInitLogin,
   handleInitRetrieveUser,
   handleMint,
+  handleInitRegister,
 ];
