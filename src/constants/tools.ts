@@ -12,7 +12,12 @@ export const EDITOR_JS_TOOLS = {
   list: List,
   warning: Warning,
   code: Code,
-  header: Header,
+  header: {
+    class: Header,
+    config: {
+      placeholder: 'Header..',
+    },
+  },
   quote: Quote,
   marker: Marker,
   checklist: CheckList,

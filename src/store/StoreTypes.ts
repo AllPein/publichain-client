@@ -1,3 +1,4 @@
+import { RouterState } from 'connected-react-router';
 import { History } from 'history';
 import { AnyAction, Dispatch } from 'redux';
 
@@ -13,6 +14,7 @@ export interface RootState {
   loader: LoaderStore;
   modal: ModalStore;
   websocket: WebsocketStore;
+  router: RouterState;
 }
 
 export type StoreDependencies = {

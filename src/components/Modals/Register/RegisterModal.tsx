@@ -58,7 +58,7 @@ export const RegisterModal: FC = () => {
 
   const body = (
     <div>
-      <p className="text-slate-500 text-xl leading-relaxed">
+      <p className="text-slate-500 text-xl leading-relaxed mt-6">
         Looks like You are not signed up to Writty yet. Let's change that!
       </p>
       <form className="space-y-8 mt-8" action="#">
@@ -97,7 +97,7 @@ export const RegisterModal: FC = () => {
     <button
       type="button"
       onClick={onConfirm}
-      className="text-white bg-indigo-600 hover:bg-indigo-500  focus:outline-none font-medium rounded-lg text-xl px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      className="text-white mt-4 bg-indigo-600 hover:bg-indigo-500  focus:outline-none font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
     >
       Create account
     </button>

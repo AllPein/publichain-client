@@ -1,9 +1,12 @@
 import React from 'react';
 import { Provider as StoreProvider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+
+import { ConnectedRouter } from 'connected-react-router';
 import { ThemeProvider } from 'styled-components';
+
 import { theme } from '@/application/theme/theme.default';
 import store from '@/store/InitStore';
+import { history } from '@/utils/history';
 
 type Props = {
   children: React.ReactNode;
@@ -12,7 +15,7 @@ type Props = {
 const Provider: React.FC<Props> = ({ children }) => (
   <ThemeProvider theme={theme}>
     <StoreProvider store={store}>
-      <BrowserRouter>{children}</BrowserRouter>
+      <ConnectedRouter history={history}>{children}</ConnectedRouter>
     </StoreProvider>
   </ThemeProvider>
 );

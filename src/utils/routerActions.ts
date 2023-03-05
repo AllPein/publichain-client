@@ -1,7 +1,7 @@
 import { history } from '@/utils/history';
 
 export function goBack() {
-  history.back();
+  history.goBack();
 }
 
 export function goTo(link: string) {
