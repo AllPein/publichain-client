@@ -9,14 +9,14 @@ const VaultsPage = lazy(
   () => import('@/pages/VaultsPage/VaultsPage'),
   'VaultsPage',
 );
-// const CollectionsPage = lazy(
-//   () => import('@/pages/ProjectInfoPage/CollectionsPage'),
-//   'CollectionsPage',
-// );
-// const VaultPage = lazy(
-//   () => import('@/pages/VaultPage/VaultPage'),
-//   'VaultPage',
-// );
+const ArticlePage = lazy(
+  () => import('@/pages/ArticlePage/ArticlePage'),
+  'ArticlePage',
+);
+const CreateArticlePage = lazy(
+  () => import('@/pages/CreateArticlePage/CreateArticlePage'),
+  'CreateArticlePage',
+);
 
 const Root = () => {
   const renderRoot = () => (
@@ -26,11 +26,11 @@ const Root = () => {
         <Route exact path="/explore">
           <VaultsPage />
         </Route>
-        <Route exact path="/collections">
-          {/* <CollectionsPage /> */}
+        <Route exact path="/article/:id">
+          <ArticlePage />
         </Route>
-        <Route exact path="/vaults/:vaultId">
-          {/* <VaultPage /> */}
+        <Route exact path="/create-article">
+          <CreateArticlePage />
         </Route>
       </Switch>
     </ApplicationLayout>

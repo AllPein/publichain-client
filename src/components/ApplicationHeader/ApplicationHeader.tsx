@@ -8,6 +8,7 @@ import { useMount } from '@/hooks/useMount';
 import { selectAuthLoading } from '@/store/loader/LoaderSelectors';
 import { selectIsLoggedIn, selectUserInfo } from '@/store/user/UserSelectors';
 import { createWebsocket } from '@/utils/WebsocketHelper';
+import { goTo } from '@/utils/routerActions';
 
 import * as UI from './ApplicationHeader.styles';
 
@@ -31,8 +32,11 @@ const ApplicationHeader = () => {
         <UI.Logo src={Logo} />
       </UI.StyledLogoSearch>
       <UI.StyledProfileUpload>
+        <button onClick={() => goTo('/create-article')}>Create article</button>
         {isLoggedIn ? (
-          <AccountMenu accountInfo={accountInfo} />
+          <>
+            <AccountMenu accountInfo={accountInfo} />
+          </>
         ) : (
           <ConnectWalletButton loading={isLoading} />
         )}

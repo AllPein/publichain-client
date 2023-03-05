@@ -21,7 +21,9 @@ const ConnectWalletButton = ({ loading }) => {
       disabled={loading}
       type="submit"
       onClick={handleConnectWalletClick}
-      className={`group relative flex w-full justify-center rounded-md bg-indigo-600 py-4 px-6 text-xl font-semibold text-white ${
+      className={`group relative flex w-full justify-center rounded-md ${
+        !loading ? 'bg-indigo-600' : 'bg-gray-300'
+      } py-4 px-6 text-xl font-semibold text-white ${
         !loading && 'hover:bg-indigo-500'
       } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
     >
@@ -38,7 +40,7 @@ const ConnectWalletButton = ({ loading }) => {
             cy="12"
             r="10"
             stroke="currentColor"
-            stroke-width="4"
+            strokeWidth="4"
           ></circle>
           <path
             className="opacity-75"

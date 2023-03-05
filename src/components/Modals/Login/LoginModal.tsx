@@ -1,13 +1,10 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Modal } from 'antd';
-
+import { Modal } from '@/components/Modal/Modal';
 import { ModalActions, ModalData } from '@/store/Modal/ModalActions';
 import { selectLoginModal } from '@/store/Modal/ModalSelectors';
 import { LoaderAction } from '@/store/loader/LoaderActions';
-
-import { Text } from './LoginModal.styles';
 
 export const LoginModal: FC = () => {
   /** Store */
@@ -20,7 +17,9 @@ export const LoginModal: FC = () => {
 
   const body = (
     <>
-      <Text>Scan QR code with your Xumm mobile application</Text>
+      <p className="my-5 text-center text-slate-500 text-2xl leading-relaxed">
+        Scan QR code with your Xumm mobile application
+      </p>
       <img src={modalData.payload.src} />
     </>
   );
@@ -33,11 +32,10 @@ export const LoginModal: FC = () => {
 
   return (
     <Modal
-      onCancel={onClose}
+      onClose={onClose}
       closable
-      bodyStyle={{ textAlign: 'center' }}
-      title={<Text>Connect to Writty</Text>}
-      open={modalData.isOpen}
+      title="Connect to Writty"
+      isOpen={modalData.isOpen}
       footer={null}
     >
       {body}
