@@ -8,7 +8,7 @@ export type VegaWebSocketPayload = {
 
 export type VegaWebSocketSendPayload = {
   LOGIN: null | { token: string };
-  REGISTER: Omit<AccountInfo, 'token'>;
+  REGISTER: Omit<AccountInfo, 'token' | 'image'>;
   USER_INFO: null;
 };
 

@@ -58,12 +58,12 @@ export const RegisterModal: FC = () => {
 
   const body = (
     <div>
-      <p className="text-slate-500 text-xl leading-relaxed mt-6">
+      <p className="text-slate-500 text-lg leading-relaxed mt-6">
         Looks like You are not signed up to Writty yet. Let's change that!
       </p>
       <form className="space-y-8 mt-8" action="#">
         <div>
-          <label className="block my-2 text-xl font-medium text-gray-900 dark:text-white">
+          <label className="block my-2 text-lg font-medium text-gray-900 dark:text-white">
             Your full name
           </label>
           <input
@@ -71,13 +71,13 @@ export const RegisterModal: FC = () => {
             name="name"
             id="name"
             onChange={handleChangeName}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
             placeholder="Jane Doe"
             required
           />
         </div>
         <div>
-          <label className="block mb-2 text-xl font-medium text-gray-900 dark:text-white">
+          <label className="block mb-2 text-lg font-medium text-gray-900 dark:text-white">
             Tell everyone about yourself
           </label>
           <textarea
@@ -86,7 +86,7 @@ export const RegisterModal: FC = () => {
             onChange={handleChangeBio}
             id="description"
             placeholder="Your bio here"
-            className="bg-gray-50 border max-h-64 border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            className="bg-gray-50 border max-h-64 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
           />
         </div>
       </form>

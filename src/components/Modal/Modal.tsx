@@ -57,16 +57,16 @@ const Modal: React.FC<ModalProps> = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-lg transform overflow-hidden rounded-2xl bg-white p-12 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-md transform overflow-hidden rounded-2xl bg-white p-10 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="text-2xl font-medium leading-6 text-gray-900"
+                  className="text-xl font-medium leading-6 text-gray-900"
                 >
                   {title}
                 </Dialog.Title>
                 <div className="mt-2">{children}</div>
 
-                <div className="mt-4">{footer}</div>
+                <div className="mt-4 text-right">{footer}</div>
               </Dialog.Panel>
             </Transition.Child>
           </div>

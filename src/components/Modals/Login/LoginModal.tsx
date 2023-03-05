@@ -17,10 +17,14 @@ export const LoginModal: FC = () => {
 
   const body = (
     <>
-      <p className="mt-10 text-center text-slate-500 text-lg leading-relaxed">
+      <p className="mt-6 text-center text-slate-500 text-md leading-relaxed">
         Scan QR code with your Xumm mobile application
       </p>
-      <img src={modalData.payload.src} />
+      <img
+        className="ml-1 mt-6"
+        style={{ height: 350, width: 350 }}
+        src={modalData.payload.src}
+      />
     </>
   );
 

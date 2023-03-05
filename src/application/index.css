@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1 {
+    @apply text-2xl;
+    font-weight: bold;
+  }
+  h2 {
+    @apply text-xl;
+    font-weight: bold;
+  }
+  h3 {
+    @apply text-lg;
+    font-weight: bold;
+  }
+  h4 {
+    @apply text-base;
+    font-weight: bold;
+  }
+  h5 {
+    @apply text-sm;
+    font-weight: bold;
+  }
+  h6 {
+    @apply text-xs;
+    font-weight: bold;
+  }
+}
+
 body {
   height: 100%;
   width: 100%;
@@ -12,12 +39,6 @@ body {
 .root {
   height: 100%;
   width: 100%;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .selectable.table tr {

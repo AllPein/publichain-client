@@ -21,9 +21,9 @@ const ConnectWalletButton = ({ loading }) => {
       disabled={loading}
       type="submit"
       onClick={handleConnectWalletClick}
-      className={`group relative flex w-full justify-center rounded-md ${
+      className={`group relative flex justify-center rounded-md ${
         !loading ? 'bg-indigo-600' : 'bg-gray-300'
-      } py-4 px-6 text-xl font-semibold text-white ${
+      } py-4 px-6 text-base font-semibold text-white ${
         !loading && 'hover:bg-indigo-500'
       } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
     >

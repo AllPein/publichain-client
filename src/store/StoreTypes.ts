@@ -46,6 +46,7 @@ export type XummWallet = {
 export type AccountInfo = {
   token: string;
   address: string;
+  imageUrl: string;
   name: string;
   bio?: string;
 };
