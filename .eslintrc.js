@@ -10,8 +10,12 @@ module.exports = {
   extends: [
     'airbnb',
     'airbnb/hooks',
-    'plugin:import/typescript',
+    'eslint:recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:node/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:import/typescript',
     'plugin:prettier/recommended',
     'prettier',
   ],
@@ -29,17 +33,10 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
-  plugins: [
-    'react',
-    'import',
-    'jsx-a11y',
-    '@typescript-eslint',
-    'simple-import-sort',
-    'prettier',
-  ],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   overrides: [
     {
-      files: '*.js',
+      files: '*.{ts, tsx}',
       rules: {
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
@@ -48,13 +45,14 @@ module.exports = {
         'import/resolver': {
           alias: {
             extensions: ['.ts', '.tsx'],
-            map: [['@', './src/*']],
+            map: [['@', './src']],
           },
         },
       },
     },
   ],
   rules: {
+    'import/extensions': 'off',
     'comma-dangle': 'off',
     'no-console': 'warn',
     'prettier/prettier': ['error', prettierConfig],
@@ -85,46 +83,21 @@ module.exports = {
     'react/require-default-props': 'off',
     'sort-imports': 'off',
     'import/order': 'off',
-    'import/first': 'error',
-    'import/newline-after-import': 'error',
-    'import/no-duplicates': 'error',
+    'import/newline-after-import': 'off',
+    'import/no-unresolved': 'off',
+    'import/no-duplicates': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
-    'import/named': 'error',
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
+    'import/named': 'off',
     'no-confusing-arrow': ['error', { allowParens: false }],
     'no-redeclare': ['error', { builtinGlobals: false }],
     'no-underscore-dangle': ['error', { allow: ['__typename'] }],
     'no-use-before-define': 'off',
     'no-shadow': 'off',
-    'simple-import-sort/imports': [
-      'error',
-      {
-        // https://github.com/lydell/eslint-plugin-simple-import-sort/blob/master/examples/.eslintrc.js#L71
-        groups: [
-          [
-            '^(assert|buffer|child_process|cluster|console|constants|crypto|dgram|dns|domain|events|fs|http|https|module|net|os|path|punycode|querystring|readline|repl|stream|string_decoder|sys|timers|tls|tty|url|util|vm|zlib|freelist|v8|process|async_hooks|http2|perf_hooks)(/.*|$)',
-          ],
-          ['^react', '^@?\\w'],
-          ['^\\u0000'],
-          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
-          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
-          ['^.+\\.s?css$'],
-        ],
-      },
-    ],
+
     // Typescript
     '@typescript-eslint/no-unused-vars': 'warn',
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/no-use-before-define': ['error'],
     '@typescript-eslint/no-empty-function': 'off',

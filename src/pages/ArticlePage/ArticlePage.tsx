@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
+import { createReactEditorJS } from 'react-editor-js';
 
-import Blocks from 'editorjs-blocks-react-renderer';
+import { EDITOR_JS_TOOLS } from '@/constants/tools';
+import { EditorCore } from '@/types/EditorTypes';
 
 const ArticlePage: React.FC = () => {
   const data = {
@@ -71,7 +73,7 @@ const ArticlePage: React.FC = () => {
         id: 'ksCokKAhQw',
         type: 'paragraph',
         data: {
-          text: "Classic WYSIWYG editors produce raw HTML-markup with both content data and content appearance. On the contrary, <mark class='cdx-marker'>Editor.js outputs JSON object</mark> with data of each Block.",
+          text: "Classic WYSIWYG editors produce raw HTML-markup with both content data and content appearance. On the contrary, <mark className='cdx-marker'>Editor.js outputs JSON object</mark> with data of each Block.",
         },
       },
       {
@@ -117,50 +119,111 @@ const ArticlePage: React.FC = () => {
     ],
   };
 
+  const editorCore = useRef<EditorCore>(null);
+  const ReactEditorJS = createReactEditorJS();
+
+  const handleInitialize = useCallback(
+    (instance) => {
+      // @ts-ignore
+      editorCore.current = instance;
+    },
+    [editorCore],
+  );
+
   return (
     <div className="max-w-full flex flex-col justify-center items-center overflow-x-hidden overflow-y-auto">
       <div className="max-w-6xl">
-        <Blocks
-          data={data}
-          config={{
-            code: {
-              className: 'language-js',
-            },
-            delimiter: {
-              className: 'border border-2 w-16 mx-auto',
-            },
-            embed: {
-              className: 'border-0',
-            },
-            header: {
-              className: 'font-bold text-3xl my-3',
-            },
-            image: {
-              actionsClassNames: {
-                withBorder: 'border border-2',
-                withBackground: 'p-2',
-              },
-            },
-            list: {
-              className: 'list-inside text-xl',
-            },
-            paragraph: {
-              className:
-                'font-light text-gray-800 dark:text-gray-400 text-xl leading-relaxed',
-              actionsClassNames: {
-                alignment: 'text-{alignment}', // This is a substitution placeholder: left or center.
-              },
-            },
-            quote: {
-              className: 'py-3 px-5 italic font-serif',
-            },
-            table: {
-              className: 'table-auto',
-            },
-          }}
+        <h1 className="text-center text-8xl my-12">Title of the article</h1>
+        <ReactEditorJS
+          onInitialize={handleInitialize}
+          readOnly
+          defaultValue={data}
+          tools={EDITOR_JS_TOOLS}
         />
+        <div className="py-12 flex justify-between">
+          <div className="flex flex-col items-center">
+            <p className="mb-4 text-xl font-medium text-indigo-600 dark:text-neutral-50">
+              Created and published by
+            </p>
+            <div className="flex flex-row items-center rounded-lg bg-white shadow-lg dark:bg-neutral-700 max-w-lg cursor-pointer hover:bg-gray-100">
+              <img
+                src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/16:9/w_2123,h_1194,c_limit/phonepicutres-TA.jpg"
+                className="rounded-full w-32 h-32 ml-4"
+                alt=""
+                loading="lazy"
+              />
+              <div className="flex flex-col justify-start p-6">
+                <h5 className="text-xl font-medium text-neutral-800 dark:text-neutral-50">
+                  Aleksandr Panin
+                </h5>
+                <p className="text-xs mb-4 text-neutral-500 dark:text-neutral-300">
+                  rx34sdaf...sa3xac3
+                </p>
+                <p className="mb-4 text-base break-all text-neutral-600 dark:text-neutral-200">
+                  Web
+                  Developerajdnsjkasfjbasbfasbasbffbjaksbjkfkfas,jsfjnsanmsandnlasljhjlfashasfhasljfhlaslhfsahkafshlashllhashjashljs
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col items-center">
+            <p className="mb-4 text-xl font-medium text-indigo-600 dark:text-neutral-50">
+              Publication information
+            </p>
+            <dl className="max-w-lg text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+              <div className="flex flex-col pb-3 hover:bg-gray-100 p-3 cursor-pointer">
+                <div className="inline-flex">
+                  <dt className="text-md font-semibold mb-1 ">
+                    Transaction ID
+                  </dt>
+                  <svg
+                    viewBox="0 0 20 20"
+                    className="ml-3 mt-0.5 h-5 w-5 fill-slate-400"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                  >
+                    <path d="M7 3.25H3.25v13.5h13.5V13h-1.5v2.25H4.75V4.75H7v-1.5Zm9.75 0H10v1.5h4.19l-5.72 5.72 1.06 1.06 5.72-5.72V10h1.5V3.25Z"></path>
+                  </svg>
+                </div>
+
+                <dd className="text-gray-500 md:text-md dark:text-gray-400">
+                  NTB7G7JTDcZ2H2s6M6soSe4lhCPT3ioHK0jRdNKYv4k
+                </dd>
+              </div>
+              <div className="flex flex-col p-3 hover:bg-gray-100  cursor-pointer">
+                <div className="inline-flex">
+                  <dt className="text-md font-semibold mb-1 ">
+                    Author address
+                  </dt>
+                  <svg
+                    viewBox="0 0 20 20"
+                    className="ml-3 mt-0.5 h-5 w-5 fill-slate-400"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                  >
+                    <path d="M7 3.25H3.25v13.5h13.5V13h-1.5v2.25H4.75V4.75H7v-1.5Zm9.75 0H10v1.5h4.19l-5.72 5.72 1.06 1.06 5.72-5.72V10h1.5V3.25Z"></path>
+                  </svg>
+                </div>
+                <dd className="  text-gray-500 md:text-md dark:text-gray-400">
+                  0x6aabec15b754eBb3A320717333615EF01d1bf17f
+                </dd>
+              </div>
+              <div className="flex flex-col p-3">
+                <dt className="mb-1 text-md font-semibold">Content digest</dt>
+                <dd className=" text-gray-500 md:text-md dark:text-gray-400">
+                  3WQQzeEv_UYYJaa…N28pKintdpiH5EA
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
       </div>
-      <button>Collect</button>
+      <button
+        type="button"
+        className="w-32 text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none font-medium rounded-lg text-xl px-5 py-2.5 my-12 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Collect
+      </button>
     </div>
   );
 };

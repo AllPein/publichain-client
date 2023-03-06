@@ -29,6 +29,10 @@
   }
 }
 
+.codex-editor__redactor {
+  padding-bottom: 0 !important;
+}
+
 body {
   height: 100%;
   width: 100%;

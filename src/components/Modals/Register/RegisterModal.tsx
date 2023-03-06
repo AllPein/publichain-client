@@ -7,8 +7,6 @@ import { selectRegisterModal } from '@/store/Modal/ModalSelectors';
 import { LoaderAction } from '@/store/loader/LoaderActions';
 import { WebsocketAction } from '@/store/websocket/websocketActions';
 
-import { Label, StyledInput, Text } from './RegisterModal.styles';
-
 export const RegisterModal: FC = () => {
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');

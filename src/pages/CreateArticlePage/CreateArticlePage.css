@@ -11,6 +11,6 @@
 }
 
 .textarea[contenteditable]:empty::before {
-  content: 'Your title goes here...';
+  content: 'Your title goes here';
   color: gray;
 }
