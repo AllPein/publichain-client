@@ -1,9 +1,7 @@
 import React, { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { DownOutlined } from '@ant-design/icons';
 import { Menu, Transition } from '@headlessui/react';
-import { Button, Dropdown, MenuProps, Space } from 'antd';
 
 import { UserAction } from '@/store/user/UserAction';
 

@@ -2,7 +2,7 @@ import actionCreatorFactory from 'typescript-fsa';
 
 const factory = actionCreatorFactory('modal');
 
-export type ModalType = 'register' | 'login';
+export type ModalType = 'register' | 'login' | 'publishResult';
 
 export type ModalData<T = any> = {
   isOpen: boolean;

@@ -12,6 +12,9 @@ export const modalStoreInitialState: ModalStore = Object.freeze({
     register: {
       isOpen: false,
     },
+    publishResult: {
+      isOpen: false,
+    },
     login: {
       isOpen: false,
     },

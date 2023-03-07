@@ -28,4 +28,5 @@ const createIsLoadedSelector = <Name extends LoadingType>(name: Name) =>
   createLoaderSelector(name, 'loaded');
 
 export const selectAuthLoading = createIsLoadingSelector('auth');
+export const selectPublishLoading = createIsLoadingSelector('publish');
 export const selectAuthLoaded = createIsLoadedSelector('auth');

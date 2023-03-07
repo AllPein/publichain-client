@@ -11,3 +11,8 @@ export const selectLoginModal = createSelector(
   (state: RootState) => state.modal.modals['login'],
   (modalData) => modalData,
 );
+
+export const selectPublishModal = createSelector(
+  (state: RootState) => state.modal.modals['publishResult'],
+  (modalData) => modalData,
+);

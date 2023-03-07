@@ -5,9 +5,11 @@ import { LoaderAction, LoaderStore, LoadingType } from './LoaderActions';
 export const loaderStoreInitialState: LoaderStore = Object.freeze({
   loaded: {
     auth: false,
+    publish: false,
   },
   loading: {
     auth: false,
+    publish: false,
   },
 });
 

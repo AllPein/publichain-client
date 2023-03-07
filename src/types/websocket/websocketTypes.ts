@@ -9,7 +9,12 @@ import {
   WebsocketError,
 } from './websocketPayload';
 
-export type WebSocketType = 'LOGIN' | 'REGISTER' | 'USER_INFO';
+export type WebSocketType =
+  | 'LOGIN'
+  | 'REGISTER'
+  | 'USER_INFO'
+  | 'PUBLISH'
+  | 'PUBLISH_RESULT';
 
 export type WebSocketMessage = {
   requestId?: string;
