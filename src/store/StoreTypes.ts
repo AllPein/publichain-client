@@ -4,12 +4,14 @@ import { AnyAction, Dispatch } from 'redux';
 
 import { IProjectService } from '@/services/types';
 import { ModalStore } from '@/store/Modal/ModalActions';
+import { ArticleStore } from '@/store/article/ArticleActions';
 import { LoaderStore } from '@/store/loader/LoaderActions';
 import { WebsocketStore } from '@/store/websocket/websocketActions';
 
 import { UserStore } from './user/UserAction';
 
 export interface RootState {
+  article: ArticleStore;
   user: UserStore;
   loader: LoaderStore;
   modal: ModalStore;

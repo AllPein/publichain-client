@@ -19,9 +19,10 @@ export const handleReceivePublishResult: Epic<
     ofAction(WebsocketAction.handleMessage),
     filter(({ payload }) => payload.event === 'PUBLISH_RESULT'),
     tap(({ payload }) => {
+      dispatch(ModalActions.closeModal('signature'));
       dispatch(
         ModalActions.openModal({
-          key: 'publishResult',
+          key: 'publicationResult',
           payload: payload.data,
         }),
       );

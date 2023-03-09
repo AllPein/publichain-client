@@ -2,12 +2,12 @@ import React, { Suspense } from 'react';
 import { Redirect, Switch, Route } from 'react-router-dom';
 
 import { ApplicationLayout } from '@/application/ApplicationLayout/ApplicationLayout';
-import { CenteredSpin } from '@/components/Spin/CenteredSpin';
+import { Loader } from '@/components/Loader/Loader';
 import { lazy } from '@/utils/lazy';
 
-const VaultsPage = lazy(
-  () => import('@/pages/VaultsPage/VaultsPage'),
-  'VaultsPage',
+const ArticlesPage = lazy(
+  () => import('@/pages/ArticlesPage/ArticlesPage'),
+  'ArticlesPage',
 );
 const ArticlePage = lazy(
   () => import('@/pages/ArticlePage/ArticlePage'),
@@ -24,9 +24,9 @@ const Root = () => {
       <Switch>
         <Redirect exact from="/" to="/explore" />
         <Route exact path="/explore">
-          <VaultsPage />
+          <ArticlesPage />
         </Route>
-        <Route exact path="/article/:id">
+        <Route exact path="/article/:articleId">
           <ArticlePage />
         </Route>
         <Route exact path="/create-article">
@@ -37,7 +37,7 @@ const Root = () => {
   );
 
   return (
-    <Suspense fallback={<CenteredSpin spinning />}>
+    <Suspense fallback={<Loader centered size="s" />}>
       <Route path="/" render={renderRoot} />
     </Suspense>
   );

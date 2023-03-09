@@ -12,7 +12,12 @@ export const selectLoginModal = createSelector(
   (modalData) => modalData,
 );
 
-export const selectPublishModal = createSelector(
-  (state: RootState) => state.modal.modals['publishResult'],
+export const selectPublicationResultModal = createSelector(
+  (state: RootState) => state.modal.modals['publicationResult'],
+  (modalData) => modalData,
+);
+
+export const selectSignatureModal = createSelector(
+  (state: RootState) => state.modal.modals['signature'],
   (modalData) => modalData,
 );

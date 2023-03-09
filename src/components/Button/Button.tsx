@@ -1,26 +1,41 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 
 type ButtonProps = {
   className?: string;
   loading?: boolean;
+  round?: boolean;
+  size?: 's' | 'm' | 'l';
   onClick: () => any;
   children: React.ReactNode;
 };
 
 export const Button: FC<ButtonProps> = ({
   className,
+  size = 'm',
+  round = false,
   loading,
   onClick,
   children,
 }) => {
+  const btnSizeClass = useMemo(() => {
+    switch (size) {
+      case 's':
+        return 'rounded-md p-2 text-xs';
+      case 'l':
+        return 'rounded-xl py-4 px-6 text-lg';
+      default:
+        return 'rounded-lg p-3 text-base';
+    }
+  }, [size]);
+
   return (
     <button
       disabled={loading}
       type="submit"
       onClick={onClick}
-      className={`${className} group relative flex justify-center rounded-md ${
-        !loading ? 'bg-indigo-600' : 'bg-gray-300'
-      } py-4 px-6 text-base font-medium text-white ${
+      className={`${className} ${btnSizeClass} ${
+        round ? 'rounded-full' : ''
+      }  ${!loading ? 'bg-indigo-600' : 'bg-gray-300'} font-medium text-white ${
         !loading && 'hover:bg-indigo-500'
       } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
     >

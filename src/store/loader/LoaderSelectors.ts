@@ -30,3 +30,5 @@ const createIsLoadedSelector = <Name extends LoadingType>(name: Name) =>
 export const selectAuthLoading = createIsLoadingSelector('auth');
 export const selectPublishLoading = createIsLoadingSelector('publish');
 export const selectAuthLoaded = createIsLoadedSelector('auth');
+export const selectArticlesLoading = createIsLoadingSelector('articles');
+export const selectArticleInfoLoading = createIsLoadingSelector('articleInfo');

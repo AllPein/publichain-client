@@ -1,11 +1,17 @@
 import React from 'react';
 
 import { LoginModal } from '@/components/Modals/Login/LoginModal';
-import { PublishResultModal } from '@/components/Modals/PublishResult/PublishResultModal';
+import { PublicationResultModal } from '@/components/Modals/PublicationResult/PublicationResultModal';
+import { SignatureModal } from '@/components/Modals/Signature/SignatureModal';
 
 import { RegisterModal } from './Register/RegisterModal';
 
-const modals = [<RegisterModal />, <LoginModal />, <PublishResultModal />];
+const modals = [
+  <RegisterModal />,
+  <LoginModal />,
+  <SignatureModal />,
+  <PublicationResultModal />,
+];
 
 export const Modals = () => (
   <div>

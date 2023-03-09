@@ -21,15 +21,6 @@ const ConnectWalletButton = ({ loading }) => {
     <Button onClick={handleConnectWalletClick} loading={loading}>
       Connect wallet
     </Button>
-
-    // <UI.StyledButton
-    //   loading={loading}
-    //   type="primary"
-    //   size="large"
-    //   onClick={handleConnectWalletClick}
-    // >
-
-    // </UI.StyledButton>
   );
 };
 

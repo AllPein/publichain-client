@@ -4,7 +4,7 @@ import {
   RawAxiosRequestHeaders,
 } from 'axios';
 
-import { AccountInfo, XummWallet } from '@/store/StoreTypes';
+import { XummWallet } from '@/store/StoreTypes';
 import { XummPkce } from '@/utils/window';
 
 export interface AxiosClient {
@@ -66,8 +66,6 @@ export interface IProjectService {
   axiosClient: AxiosClient;
 
   mint(wallet): Promise<void>;
-  authorizeWithXumm(): Promise<AuthResponse>;
-  // login(
-  //   address: string,
-  // ): Promise<AxiosResponse<LoginResponse, unknown> | string | null>;
+  getArticles(): Promise<AxiosResponse<any>>;
+  getArticleInfo(id: string): Promise<AxiosResponse<any>>;
 }

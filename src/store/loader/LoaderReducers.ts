@@ -6,10 +6,14 @@ export const loaderStoreInitialState: LoaderStore = Object.freeze({
   loaded: {
     auth: false,
     publish: false,
+    articles: false,
+    articleInfo: false,
   },
   loading: {
     auth: false,
+    articleInfo: false,
     publish: false,
+    articles: false,
   },
 });
 

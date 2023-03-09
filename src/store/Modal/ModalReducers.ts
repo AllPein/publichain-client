@@ -12,7 +12,10 @@ export const modalStoreInitialState: ModalStore = Object.freeze({
     register: {
       isOpen: false,
     },
-    publishResult: {
+    publicationResult: {
+      isOpen: false,
+    },
+    signature: {
       isOpen: false,
     },
     login: {

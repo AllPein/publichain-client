@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@/components/Button/Button';
 import { EDITOR_JS_TOOLS } from '@/constants/tools';
+import { ModalActions } from '@/store/Modal/ModalActions';
 import { LoaderAction } from '@/store/loader/LoaderActions';
 import { selectPublishLoading } from '@/store/loader/LoaderSelectors';
 import { selectUserInfo } from '@/store/user/UserSelectors';
@@ -33,8 +34,12 @@ const CreateArticlePage = () => {
 
     /* Don't ever do that!*/
     const headingValue = (headingRef as any)?.current.childNodes[0].data;
-    console.log(headingValue);
     dispatch(LoaderAction.setLoading('publish'));
+    dispatch(
+      ModalActions.openModal({
+        key: 'signature',
+      }),
+    );
     dispatch(
       WebsocketAction.sendMessage({
         event: 'PUBLISH',
@@ -58,15 +63,12 @@ const CreateArticlePage = () => {
           contentEditable
         />
       </div>
-      <ReactEditorJS onInitialize={handleInitialize} tools={EDITOR_JS_TOOLS} />
+      <ReactEditorJS
+        holder="editor"
+        onInitialize={handleInitialize}
+        tools={EDITOR_JS_TOOLS}
+      />
       <div className="flex w-full justify-center">
-        {/* <button
-          type="button"
-          onClick={handleSave}
-          className="text-white mt-12 bg-indigo-600 hover:bg-indigo-700 focus:outline-none font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Publish
-        </button> */}
         <Button onClick={handleSave} loading={loading} className="mt-12">
           Publish
         </Button>

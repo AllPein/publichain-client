@@ -3,7 +3,10 @@ import { useDispatch } from 'react-redux';
 
 import { Menu, Transition } from '@headlessui/react';
 
+import { Button } from '@/components/Button/Button';
 import { UserAction } from '@/store/user/UserAction';
+import { goTo } from '@/utils/routerActions';
+import { trimAccountAddress } from '@/utils/stringHelper';
 
 const AccountMenu = ({ accountInfo }) => {
   const dispatch = useDispatch();
@@ -31,7 +34,14 @@ const AccountMenu = ({ accountInfo }) => {
   ];
 
   return (
-    <div className="text-right">
+    <div className="flex items-center">
+      <Button
+        onClick={() => goTo('/create-article')}
+        className="mr-12"
+        size="s"
+      >
+        Create article
+      </Button>
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-mdpx-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
@@ -51,10 +61,7 @@ const AccountMenu = ({ accountInfo }) => {
               <div className="text-left ml-3">
                 <p className="text-base text-black">{accountInfo.name}</p>
                 <p className="text-xs text-gray-400">
-                  {`${accountInfo.address.slice(
-                    0,
-                    6,
-                  )}...${accountInfo.address.slice(-6)}`}
+                  {trimAccountAddress(accountInfo.address)}
                 </p>
               </div>
             </a>
