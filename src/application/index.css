@@ -27,6 +27,13 @@
     @apply text-xs;
     font-weight: bold;
   }
+
+  ul {
+    list-style: disc;
+  }
+  ol {
+    list-style: decimal;
+  }
 }
 
 .codex-editor__redactor {
