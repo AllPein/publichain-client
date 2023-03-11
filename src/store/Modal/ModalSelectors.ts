@@ -21,3 +21,8 @@ export const selectSignatureModal = createSelector(
   (state: RootState) => state.modal.modals['signature'],
   (modalData) => modalData,
 );
+
+export const selectNftModal = createSelector(
+  (state: RootState) => state.modal.modals['nft'],
+  (modalData) => modalData,
+);

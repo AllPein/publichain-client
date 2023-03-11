@@ -5,6 +5,7 @@ import { ModalReducers } from '@/store/Modal/ModalReducers';
 import { RootState } from '@/store/StoreTypes';
 import { ArticleReducers } from '@/store/article/ArticleReducers';
 import { LoaderReducers } from '@/store/loader/LoaderReducers';
+import { NftReducers } from '@/store/nft/NftReducers';
 import { WebsocketReducers } from '@/store/websocket/websocketReducers';
 import { history } from '@/utils/history';
 
@@ -16,5 +17,6 @@ export default combineReducers<RootState>({
   modal: ModalReducers,
   websocket: WebsocketReducers,
   article: ArticleReducers,
+  nft: NftReducers,
   router: connectRouter(history),
 });

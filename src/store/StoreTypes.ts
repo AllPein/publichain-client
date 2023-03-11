@@ -6,6 +6,7 @@ import { IProjectService } from '@/services/types';
 import { ModalStore } from '@/store/Modal/ModalActions';
 import { ArticleStore } from '@/store/article/ArticleActions';
 import { LoaderStore } from '@/store/loader/LoaderActions';
+import { NftStore } from '@/store/nft/NftActions';
 import { WebsocketStore } from '@/store/websocket/websocketActions';
 
 import { UserStore } from './user/UserAction';
@@ -17,6 +18,7 @@ export interface RootState {
   modal: ModalStore;
   websocket: WebsocketStore;
   router: RouterState;
+  nft: NftStore;
 }
 
 export type StoreDependencies = {

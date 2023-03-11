@@ -10,6 +10,8 @@ import Paragraph from '@editorjs/paragraph';
 import Quote from '@editorjs/quote';
 import Warning from '@editorjs/warning';
 
+import { Nft } from '@/components/Editor/Tools/Nft/NftTool';
+
 export const EDITOR_JS_TOOLS = {
   paragraph: {
     class: Paragraph,
@@ -20,6 +22,7 @@ export const EDITOR_JS_TOOLS = {
   list: List,
   warning: Warning,
   code: Code,
+  nft: Nft,
   image: {
     class: Image,
     config: {

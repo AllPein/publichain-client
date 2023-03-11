@@ -1,0 +1,39 @@
+/* eslint-disable import/no-cycle */
+import { Epic } from 'redux-observable';
+import { from } from 'rxjs';
+import { ignoreElements, switchMap, tap } from 'rxjs/operators';
+import { AnyAction } from 'typescript-fsa';
+
+import { ofAction } from '@/operators/ofAction';
+import { RootState, StoreDependencies } from '@/store/StoreTypes';
+import { NftAction } from '@/store/nft/NftActions';
+
+export const handleGetNftInfo: Epic<
+  AnyAction,
+  AnyAction,
+  RootState,
+  StoreDependencies
+> = (action$, state$, { projectService, dispatch }) =>
+  action$.pipe(
+    ofAction(NftAction.getNftInformation),
+    switchMap(({ payload: { tokenAddress, tokenId, network } }) =>
+      from(
+        projectService.getNftInformation({ tokenAddress, tokenId, network }),
+      ).pipe(
+        tap((data: any) => {
+          if (data) {
+            dispatch(
+              NftAction.setNftInformation({
+                name: data.contract.name,
+                tokenAddress,
+                tokenId,
+                network,
+                imageUrl: data.nft.cached_file_url,
+              }),
+            );
+          }
+        }),
+      ),
+    ),
+    ignoreElements(),
+  );

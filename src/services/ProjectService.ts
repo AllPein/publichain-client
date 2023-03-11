@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 import { AxiosClient, IProjectService } from '@/services/types';
-import { jwt, XummPkce, XummSdkJwt } from '@/utils/window';
+import { XummPkce } from '@/utils/window';
 
 class ProjectService implements IProjectService {
   #client: any;
@@ -36,7 +36,7 @@ class ProjectService implements IProjectService {
 
       return res;
     } catch (err: any) {
-      return err.response.data.error;
+      return err;
     }
   }
 
@@ -50,30 +50,24 @@ class ProjectService implements IProjectService {
     }
   }
 
-  async mint(wallet): Promise<void> {
-    const Sdk = new XummSdkJwt(jwt);
-    const transactionBlob = {
-      txjson: {
-        TransactionType: 'NFTokenMint',
-        TransferFee: 0,
-        NFTokenTaxon: 0,
-        Flags: 8,
-        Fee: '10',
-        URI: '697066733A2F2F62616679626569676479727A74357366703775646D37687537367568377932366E6634646675796C71616266336F636C67747179353566627A6469',
-        Memos: [
-          {
-            Memo: {
-              MemoType:
-                '687474703A2F2F6578616D706C652E636F6D2F6D656D6F2F67656E65726963',
-              MemoData: '72656E74',
-            },
-          },
-        ],
-        Account: wallet.classicAddress,
+  async getNftInformation({
+    tokenAddress,
+    tokenId,
+    network,
+  }): Promise<AxiosResponse<never>> {
+    const res = await this.#axiosClient.get(
+      `/${tokenAddress}/${tokenId}?chain=${network}`,
+      {},
+      {
+        baseURL: 'https://api.nftport.xyz/v0/nfts',
+        headers: {
+          Authorization: import.meta.env.VITE_NFT_AUTH_TOKEN,
+        },
       },
-    };
-    const a = await Sdk.payload.create(transactionBlob, true);
-    console.log(a);
+    );
+    console.log(res);
+
+    return res.data as any;
   }
 }
 

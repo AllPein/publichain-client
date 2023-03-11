@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { AddNftModal } from '@/components/Modals/AddNft/AddNftModal';
 import { LoginModal } from '@/components/Modals/Login/LoginModal';
 import { PublicationResultModal } from '@/components/Modals/PublicationResult/PublicationResultModal';
 import { SignatureModal } from '@/components/Modals/Signature/SignatureModal';
@@ -11,6 +12,7 @@ const modals = [
   <LoginModal />,
   <SignatureModal />,
   <PublicationResultModal />,
+  <AddNftModal />,
 ];
 
 export const Modals = () => (

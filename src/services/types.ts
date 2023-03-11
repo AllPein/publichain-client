@@ -65,7 +65,11 @@ export interface IProjectService {
   xumm: typeof XummPkce;
   axiosClient: AxiosClient;
 
-  mint(wallet): Promise<void>;
+  getNftInformation({
+    tokenAddress,
+    tokenId,
+    network,
+  }): Promise<AxiosResponse<any>>;
   getArticles(): Promise<AxiosResponse<any>>;
   getArticleInfo(id: string): Promise<AxiosResponse<any>>;
 }

@@ -18,7 +18,7 @@ export class AxiosClient {
   ): Promise<AxiosResponse<T, unknown>> {
     return axios
       .request<T>({
-        url: `${this.baseUrl}${url}`,
+        url: `${options?.baseURL || this.baseUrl}${url}`,
         method: 'get',
         params: params || {},
         ...options,
