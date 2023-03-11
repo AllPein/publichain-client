@@ -5,13 +5,13 @@ import { GetNftInfoPayload, NftState } from '@/types/nft';
 const factory = actionCreatorFactory('nft');
 
 export type NftStore = {
-  nftInformation: NftState | null;
+  nftInformation: Record<string, NftState> | null;
 };
 
 export const NftAction = {
-  getNftInformation: factory<Omit<GetNftInfoPayload, 'name'>>(
-    'INIT_GET_NFT_INFORMATION',
+  getNftInformation: factory<GetNftInfoPayload>('INIT_GET_NFT_INFORMATION'),
+  setNftInformation: factory<{ id: string; nftInfo: NftState }>(
+    'SET_NFT_INFORMATION',
   ),
-  setNftInformation: factory<NftState>('SET_NFT_INFORMATION'),
   resetState: factory('RESET_STATE'),
 };

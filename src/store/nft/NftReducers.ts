@@ -1,7 +1,5 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 
-import { NftState } from '@/types/nft';
-
 import { NftAction, NftStore } from './NftActions';
 
 export const nftStoreInitialState: NftStore = Object.freeze({
@@ -11,10 +9,13 @@ export const nftStoreInitialState: NftStore = Object.freeze({
 export const NftReducers = reducerWithInitialState<NftStore>(
   nftStoreInitialState,
 )
-  .case(NftAction.setNftInformation, (state, nftInfo: NftState): NftStore => {
+  .case(NftAction.setNftInformation, (state, { id, nftInfo }): NftStore => {
     return {
       ...state,
-      nftInformation: nftInfo,
+      nftInformation: {
+        ...state.nftInformation,
+        [id]: nftInfo,
+      },
     };
   })
   .case(NftAction.resetState, () => {

@@ -1,12 +1,16 @@
 export type GetNftInfoPayload = {
-  name: string;
+  id: string;
   tokenAddress: string;
   tokenId: string;
   network: string;
 };
 
-export type NftState = GetNftInfoPayload & {
+export type NftState = {
   imageUrl: string;
+  name: string;
+  tokenAddress: string;
+  tokenId: string;
+  network: string;
 };
 
 export enum NetworkType {

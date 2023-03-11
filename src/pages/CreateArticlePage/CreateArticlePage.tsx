@@ -7,7 +7,6 @@ import { EDITOR_JS_TOOLS } from '@/constants/tools';
 import { ModalActions } from '@/store/Modal/ModalActions';
 import { LoaderAction } from '@/store/loader/LoaderActions';
 import { selectPublishLoading } from '@/store/loader/LoaderSelectors';
-import { NftAction } from '@/store/nft/NftActions';
 import { selectUserInfo } from '@/store/user/UserSelectors';
 import { WebsocketAction } from '@/store/websocket/websocketActions';
 import { EditorCore } from '@/types/EditorTypes';
@@ -30,26 +29,10 @@ const CreateArticlePage = () => {
     [editorCore],
   );
 
-  const defaultData = {
-    version: '2',
-    time: 1241234,
-    blocks: [
-      {
-        type: 'nft',
-        data: {
-          name: 'Mirascapes',
-          imageUrl:
-            'https://storage.googleapis.com/sentinel-nft/raw-assets/36eede28cfb9142efe02d86a0f1c9215c3d77cdf2b08c4cdfe7b9345a9e061db.jpeg',
-          tokenAddress: '0xd66a159c593f775081847c1fb0f958734e1db9c0',
-          tokenId: '444',
-          network: 'ethereum',
-        },
-      },
-    ],
-  };
-
   const handleSave = useCallback(async () => {
     const savedData = await editorCore.current!.save();
+
+    console.log(savedData);
 
     /* Don't ever do that!*/
     const headingValue = (headingRef as any)?.current.childNodes[0].data;
@@ -71,16 +54,6 @@ const CreateArticlePage = () => {
     );
   }, [headingRef, editorCore, accountInfo]);
 
-  const handleMint = () => {
-    dispatch(
-      NftAction.getNftInformation({
-        tokenAddress: '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d',
-        tokenId: '567',
-        network: 'ethereum',
-      }),
-    );
-  };
-
   return (
     <div className="mt-10">
       <div className="flex mb-12 w-full justify-center">
@@ -93,13 +66,12 @@ const CreateArticlePage = () => {
         />
       </div>
       <ReactEditorJS
-        defaultValue={defaultData}
         holder="editor"
         onInitialize={handleInitialize}
         tools={EDITOR_JS_TOOLS}
       />
       <div className="flex w-full justify-center">
-        <Button onClick={handleMint} loading={loading} className="mt-12">
+        <Button onClick={handleSave} loading={loading} className="mt-12">
           Publish
         </Button>
       </div>

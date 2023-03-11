@@ -16,7 +16,7 @@ export const handleGetNftInfo: Epic<
 > = (action$, state$, { projectService, dispatch }) =>
   action$.pipe(
     ofAction(NftAction.getNftInformation),
-    switchMap(({ payload: { tokenAddress, tokenId, network } }) =>
+    switchMap(({ payload: { id, tokenAddress, tokenId, network } }) =>
       from(
         projectService.getNftInformation({ tokenAddress, tokenId, network }),
       ).pipe(
@@ -24,11 +24,14 @@ export const handleGetNftInfo: Epic<
           if (data) {
             dispatch(
               NftAction.setNftInformation({
-                name: data.contract.name,
-                tokenAddress,
-                tokenId,
-                network,
-                imageUrl: data.nft.cached_file_url,
+                id,
+                nftInfo: {
+                  name: data.contract.name,
+                  tokenAddress,
+                  tokenId,
+                  network,
+                  imageUrl: data.nft.cached_file_url,
+                },
               }),
             );
           }

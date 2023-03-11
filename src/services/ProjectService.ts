@@ -55,19 +55,23 @@ class ProjectService implements IProjectService {
     tokenId,
     network,
   }): Promise<AxiosResponse<never>> {
-    const res = await this.#axiosClient.get(
-      `/${tokenAddress}/${tokenId}?chain=${network}`,
-      {},
-      {
-        baseURL: 'https://api.nftport.xyz/v0/nfts',
-        headers: {
-          Authorization: import.meta.env.VITE_NFT_AUTH_TOKEN,
+    try {
+      const res = await this.#axiosClient.get(
+        `/${tokenAddress}/${tokenId}?chain=${network}`,
+        {},
+        {
+          baseURL: 'https://api.nftport.xyz/v0/nfts',
+          headers: {
+            Authorization: import.meta.env.VITE_NFT_AUTH_TOKEN,
+          },
         },
-      },
-    );
-    console.log(res);
+      );
+      console.log(res);
 
-    return res.data as any;
+      return res.data as any;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 

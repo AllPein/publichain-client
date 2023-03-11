@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import debounce from 'lodash.debounce';
 
-import Nft from '@/assets/icons/ape.png';
+import DefaultNftCard from '@/assets/icons/diamond.png';
 import { Button } from '@/components/Button/Button';
 import { Modal } from '@/components/Modal/Modal';
 import { Select } from '@/components/Select/Select';
 import { ModalActions, ModalData } from '@/store/Modal/ModalActions';
 import { selectNftModal } from '@/store/Modal/ModalSelectors';
-import { LoaderAction } from '@/store/loader/LoaderActions';
+import { RootState } from '@/store/StoreTypes';
 import { NftAction } from '@/store/nft/NftActions';
 import { selectNftInformation } from '@/store/nft/NftSelectors';
-import { NetworkType, NetworkTypeToName, NftState } from '@/types/nft';
+import { NetworkType, NetworkTypeToName } from '@/types/nft';
 
 const networkOptions = [
   {
@@ -34,16 +34,14 @@ const CHANGE_DEBOUNCE_TIME = 300;
 export const AddNftModal: FC = () => {
   /** Store */
   const dispatch = useDispatch();
-  const modalData: ModalData<NftState | null> = useSelector(selectNftModal);
-  const nftInformation = useSelector(selectNftInformation);
+  const modalData: ModalData<string> = useSelector(selectNftModal);
+  const nftInformation = useSelector((state: RootState) =>
+    selectNftInformation(state, modalData.payload || ''),
+  );
 
   const [tokenAddress, setTokenAddress] = useState('');
   const [tokenId, setTokenId] = useState('');
   const [network, setNetwork] = useState(networkOptions[0]);
-
-  if (!modalData) {
-    return null;
-  }
 
   /** Methods */
   const onClose = () => {
@@ -71,6 +69,7 @@ export const AddNftModal: FC = () => {
       debounce((value) => {
         dispatch(
           NftAction.getNftInformation({
+            id: modalData.payload as string,
             tokenAddress,
             tokenId: value,
             network: network.value,
@@ -92,14 +91,49 @@ export const AddNftModal: FC = () => {
     setNetwork(value);
   };
 
-  const nftSrc = useMemo(() => {
-    return nftInformation?.imageUrl ?? Nft;
-  }, [nftInformation]);
+  if (!modalData || !modalData.payload) {
+    return null;
+  }
 
   const body = (
     <div className="flex flex-col md:flex-row overflow-hidden bg-white rounded-lg shadow-xl w-full mx-2 mt-12">
-      <div className="w-full">
-        <img className="h-full w-full object-cover" src={nftSrc} />
+      <div className="text-center cursor-pointer w-full bg-white border border-gray-200 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700">
+        {nftInformation?.imageUrl ? (
+          <img className="rounded-t-xl" src={nftInformation?.imageUrl} />
+        ) : (
+          <div
+            className="bg-gray-100 rounded-t-xl flex items-center justify-center"
+            style={{ width: 350, height: 382 }}
+          >
+            <img src={DefaultNftCard} className="w-32 h-32 " />
+          </div>
+        )}
+        <div className="p-5">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {nftInformation?.name || (
+              <div role="status" className="w-full animate-pulse">
+                <div className="h-6 bg-gray-200 rounded-full dark:bg-gray-700 mb-4"></div>
+              </div>
+            )}
+          </h5>
+          {!nftInformation?.tokenAddress ? (
+            <div
+              role="status"
+              className="w-full flex justify-center animate-pulse"
+            >
+              <div className="h-3 w-48 bg-gray-200 rounded-full dark:bg-gray-700 mb-4"></div>
+            </div>
+          ) : (
+            <a
+              target="_blank"
+              href={`https://etherscan.io/address/${nftInformation?.tokenAddress}`}
+            >
+              <span className="inline-block bg-gray-200 hover:bg-gray-100 rounded-full px-3 py-1 text-xs font-light text-gray-700 mr-2 mb-2">
+                {nftInformation.tokenAddress.slice(0, 10)}...
+              </span>
+            </a>
+          )}
+        </div>
       </div>
       <div className="w-full py-12 px-6 text-gray-800 flex flex-col justify-between">
         <form className="space-y-8" action="#">

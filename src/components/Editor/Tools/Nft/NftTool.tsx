@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { v4 as uuid } from 'uuid';
+
 import { Provider } from '@/application/Provider/Provider';
 import { NftToolComponent } from '@/components/NftToolComponent/NftToolComponent';
 import { NftState } from '@/types/nft';
 
 export class Nft {
   private data: NftState;
+  private container;
 
   static get toolbox() {
     return {
@@ -29,25 +32,35 @@ export class Nft {
 
   constructor({ data }) {
     this.data = data;
+    this.container = null;
   }
 
   render() {
-    const rootNode = document.createElement('div');
-    rootNode.className = 'flex justify-center';
-    ReactDOM.render(
-      <Provider>
-        <NftToolComponent nft={this.data} />
-      </Provider>,
-      rootNode,
-    );
+    if (!this.container) {
+      this.container = document.createElement('div');
+      this.container.className = 'flex justify-center my-12';
 
-    return rootNode;
+      const id = uuid();
+
+      const setData = (newData) => {
+        this.data = {
+          ...newData,
+        };
+      };
+
+      ReactDOM.render(
+        <Provider>
+          <NftToolComponent setData={setData} id={id} nft={this.data} />
+        </Provider>,
+        this.container,
+      );
+    }
+    return this.container;
   }
 
-  save(blockContent) {
-    console.log(blockContent);
+  save() {
     return {
-      url: blockContent.value,
+      ...this.data,
     };
   }
 }
