@@ -11,7 +11,7 @@ type LoaderProps = {
 export const Loader: FC<LoaderProps> = ({
   className,
   centered = false,
-  size = 'm',
+  size = 's',
 }) => {
   const loaderClass = useMemo(() => {
     switch (size) {

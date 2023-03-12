@@ -26,7 +26,8 @@ export class Nft {
           <path d="M 70.001 35.04 H 57.543 c -0.553 0 -1 -0.448 -1 -1 s 0.447 -1 1 -1 h 12.458 c 0.553 0 1 0.448 1 1 S 70.554 35.04 70.001 35.04 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
           <path d="M 63.772 56.96 c -0.553 0 -1 -0.447 -1 -1 V 34.04 c 0 -0.552 0.447 -1 1 -1 c 0.553 0 1 0.448 1 1 V 55.96 C 64.772 56.512 64.325 56.96 63.772 56.96 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
         </g>
-      </svg>`,
+      </svg>
+      `,
     };
   }
 

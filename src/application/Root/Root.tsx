@@ -9,13 +9,30 @@ const ArticlesPage = lazy(
   () => import('@/pages/ArticlesPage/ArticlesPage'),
   'ArticlesPage',
 );
+
+const MyArticlesPage = lazy(
+  () => import('@/pages/ArticlesPage/MyArticles'),
+  'MyArticlesPage',
+);
+
+const CollectedArticlesPage = lazy(
+  () => import('@/pages/ArticlesPage/CollectedArticles'),
+  'CollectedArticlesPage',
+);
+
 const ArticlePage = lazy(
   () => import('@/pages/ArticlePage/ArticlePage'),
   'ArticlePage',
 );
+
 const CreateArticlePage = lazy(
   () => import('@/pages/CreateArticlePage/CreateArticlePage'),
   'CreateArticlePage',
+);
+
+const AccountPage = lazy(
+  () => import('@/pages/AccountPage/AccountPage'),
+  'AccountPage',
 );
 
 const Root = () => {
@@ -29,6 +46,15 @@ const Root = () => {
         <Route exact path="/article/:articleId">
           <ArticlePage />
         </Route>
+        <Route exact path="/account">
+          <AccountPage />
+        </Route>
+        <Route exact path="/my-articles">
+          <MyArticlesPage />
+        </Route>
+        <Route exact path="/collected-articles">
+          <CollectedArticlesPage />
+        </Route>
         <Route exact path="/create-article">
           <CreateArticlePage />
         </Route>
@@ -37,7 +63,7 @@ const Root = () => {
   );
 
   return (
-    <Suspense fallback={<Loader centered size="s" />}>
+    <Suspense fallback={<Loader centered />}>
       <Route path="/" render={renderRoot} />
     </Suspense>
   );

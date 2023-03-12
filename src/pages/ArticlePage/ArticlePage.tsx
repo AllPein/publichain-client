@@ -18,7 +18,7 @@ const ArticlePage: React.FC = () => {
     dispatch(ArticleAction.initGetArticleInfo(articleId));
   });
 
-  return loading ? <Loader size="s" centered /> : <ArticleInfo />;
+  return loading ? <Loader centered /> : <ArticleInfo />;
 };
 
 export { ArticlePage };

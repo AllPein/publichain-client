@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Menu, Transition } from '@headlessui/react';
+import { PlusIcon } from '@heroicons/react/20/solid';
 
 import { Button } from '@/components/Button/Button';
 import { UserAction } from '@/store/user/UserAction';
@@ -20,11 +21,18 @@ const AccountMenu = ({ accountInfo }) => {
   const items = [
     {
       label: 'Account',
+      onClick: () => goTo('/account'),
       key: '0',
     },
     {
       label: 'My articles',
+      onClick: () => goTo('/my-articles'),
       key: '1',
+    },
+    {
+      label: 'Collected articles',
+      onClick: () => goTo('/collected-articles'),
+      key: '2',
     },
     {
       label: 'Log out',
@@ -35,12 +43,8 @@ const AccountMenu = ({ accountInfo }) => {
 
   return (
     <div className="flex items-center">
-      <Button
-        onClick={() => goTo('/create-article')}
-        className="mr-12"
-        size="s"
-      >
-        Create article
+      <Button onClick={() => goTo('/create-article')} className="" size="s">
+        <PlusIcon />
       </Button>
       <Menu as="div" className="relative inline-block text-left">
         <div>

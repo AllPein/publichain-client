@@ -18,7 +18,7 @@ export const SignatureModal: FC = () => {
         Your publication has been successfuly created. Please, sign the
         transaction via your Xumm applictaion.
       </p>
-      <Loader className="mt-12" size="s" />
+      <Loader className="mt-12" />
     </div>
   );
 

@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
+import {
+  ArrowTopRightOnSquareIcon,
+  PlayCircleIcon,
+  StopCircleIcon,
+} from '@heroicons/react/20/solid';
 // import { useSelector } from 'react-redux';
 import Blocks from 'editorjs-blocks-react-renderer';
 import { CodeBoxOutput } from 'editorjs-react-renderer';
@@ -14,6 +20,8 @@ import { Warning } from '@/components/Editor/Renderers/Warning/WarningRenderer';
 import { trimAccountAddress } from '@/utils/stringHelper';
 
 export const ArticleInfo = () => {
+  const { speak, speaking, cancel } = useSpeechSynthesis();
+
   // const articleInfo = useSelector(selectArticleInfo);
   const articleInfo = {
     title: 'Title of the article',
@@ -26,10 +34,6 @@ export const ArticleInfo = () => {
         'https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg',
     },
   };
-
-  if (!articleInfo) {
-    return null;
-  }
 
   const data = {
     time: 1678523296185,
@@ -110,7 +114,7 @@ export const ArticleInfo = () => {
           name: 'Mirascapes',
           tokenAddress: '0x23581767a106ae21c074b2276d25e5c3e136a68b',
           tokenId: '1',
-          network: 'ethereum',
+          network: 'polygon',
         },
       },
       {
@@ -180,15 +184,15 @@ export const ArticleInfo = () => {
         data: {
           items: [
             {
-              text: 'Сходить в туалет',
+              text: 'Shit the bed',
               checked: true,
             },
             {
-              text: 'Проснуться',
+              text: 'Wake up',
               checked: false,
             },
             {
-              text: 'Встать с кровати',
+              text: 'Get up',
               checked: false,
             },
           ],
@@ -210,19 +214,124 @@ export const ArticleInfo = () => {
     ],
   };
 
+  const textToSpeak = useMemo(() => {
+    const regex = /<.*?>/g;
+    const text =
+      `Article written and published by ${articleInfo.author.name}. ` +
+      articleInfo.title +
+      '. ' +
+      data.blocks
+        .filter(
+          (block) =>
+            block.data.text ||
+            block.data.caption ||
+            block.type === 'checkbox' ||
+            block.type === 'list',
+        )
+        .map((block) => {
+          if (block.type === 'checkbox') {
+            return block.data.items!.map((item) => {
+              const mappedItem = item.text.replace(regex, '');
+              if (item.checked) {
+                return `${mappedItem}. check. `;
+              }
+
+              return mappedItem + '. ';
+            });
+          }
+
+          if (block.type === 'quote') {
+            return `${block.data.text?.replace(
+              regex,
+              '',
+            )}, said ${block.data.caption?.replace(regex, '')}`;
+          }
+
+          if (block.data.text) {
+            return block.data.text?.replace(regex, '');
+          }
+
+          if (block.data.caption) {
+            return block.data.caption?.replace(regex, '');
+          }
+
+          if (block.type === 'list') {
+            return block.data.items!.map((item, index) => {
+              const mappedItem = item.replace(regex, '');
+              if (block.data.type === 'ordered') {
+                return `${index + 1}. ${mappedItem}. `;
+              }
+
+              return mappedItem;
+            });
+          }
+
+          return '';
+        })
+        .join('. ');
+
+    return text;
+  }, [articleInfo, data]);
+
+  if (!articleInfo) {
+    return null;
+  }
+
   return (
     <div className="max-w-full flex flex-col justify-center items-center overflow-x-hidden overflow-y-auto">
       <div className="max-w-6xl">
+        <div className="inline-flex items-center w-full justify-start rounded-mdpx-4 py-12 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <a
+            className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
+            id="dropdownMenuButton2"
+            role="button"
+            data-te-dropdown-toggle-ref
+            aria-expanded="false"
+          >
+            <img
+              src={articleInfo.author.imageUrl}
+              className="rounded-full w-10 h-10"
+              alt=""
+              loading="lazy"
+            />
+            <div className="text-left ml-3">
+              <p className="text-base text-black">{articleInfo.author.name}</p>
+              <p className="text-xs text-gray-400">
+                {trimAccountAddress(articleInfo.author.address)}
+              </p>
+            </div>
+          </a>
+          {speaking ? (
+            <a className="flex ml-10 cursor-pointer" onClick={() => cancel()}>
+              <p className="text-black">Stop</p>
+              <StopCircleIcon className="ml-1 h-5 w-5 text-black" />
+            </a>
+          ) : (
+            <a
+              className="flex ml-10 cursor-pointer"
+              onClick={() =>
+                speak({
+                  text: textToSpeak,
+                  rate: 0.8,
+                })
+              }
+            >
+              <p className="text-black">Listen</p>
+              <PlayCircleIcon className="ml-1 h-5 w-5 text-black" />
+            </a>
+          )}
+        </div>
         <h1 className="text-center text-8xl my-12 font-poppins">
           {articleInfo.title}
         </h1>
+
         <Blocks
           data={data}
           renderers={{
             list: List,
             quote: Quote as any,
             image: Image as any,
-            nft: Nft,
+            nft: Nft as any,
             warning: Warning,
             checkbox: Checkbox,
             code: CodeBoxOutput,
@@ -245,11 +354,11 @@ export const ArticleInfo = () => {
               captionClassName: 'text-center mt-4 text-gray-500',
             },
             list: {
-              className: 'list-inside mt-6 font-poppins font-thin',
+              className: 'list-inside mt-6 font-poppins font-light',
             },
             paragraph: {
               className:
-                'text-xl text-opacity-75 font-poppins font-thin leading-10 mt-4',
+                'text-xl text-opacity-75 font-poppins font-light leading-10 mt-4',
               actionsClassNames: {
                 alignment: 'text-{alignment}', // This is a substitution placeholder: left or center.
               },
@@ -264,32 +373,8 @@ export const ArticleInfo = () => {
           }}
         />
         <div className="py-12">
-          <div className="flex flex-col items-center">
-            <p className="mb-4 text-xl font-medium text-indigo-600 dark:text-neutral-50">
-              Created and published by
-            </p>
-            <div className="mt-10 flex flex-row items-center rounded-lg bg-white outline outline-gray-200 dark:bg-neutral-700 max-w-lg cursor-pointer">
-              <img
-                src={articleInfo.author.imageUrl}
-                className="rounded-full w-32 h-32 ml-4"
-                alt=""
-                loading="lazy"
-              />
-              <div className="flex flex-col justify-start p-6">
-                <h5 className="text-xl font-medium text-neutral-800 dark:text-neutral-50">
-                  {articleInfo.author.name}
-                </h5>
-                <p className="text-xs mb-4 text-neutral-500 dark:text-neutral-300">
-                  {trimAccountAddress(articleInfo.author.address)}
-                </p>
-                <p className="mb-4 text-base break-all text-neutral-600 dark:text-neutral-200">
-                  {articleInfo.author.bio}
-                </p>
-              </div>
-            </div>
-          </div>
           <div className="flex flex-col items-center mt-12">
-            <p className="mb-4 text-xl font-medium text-indigo-600 dark:text-neutral-50">
+            <p className="mb-4 text-xl font-medium  dark:text-neutral-50">
               Publication information
             </p>
             <dl className="max-w-lg text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
@@ -298,18 +383,11 @@ export const ArticleInfo = () => {
                   target="_blank"
                   href={`https://testnet.xrpl.org/transactions/${articleInfo.transactionId}`}
                 >
-                  <div className="inline-flex">
+                  <div className="inline-flex w-full">
                     <dt className="text-md font-semibold mb-1 ">
                       Transaction ID
                     </dt>
-                    <svg
-                      viewBox="0 0 20 20"
-                      className="ml-3 mt-0.5 h-5 w-5 fill-slate-400"
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                    >
-                      <path d="M7 3.25H3.25v13.5h13.5V13h-1.5v2.25H4.75V4.75H7v-1.5Zm9.75 0H10v1.5h4.19l-5.72 5.72 1.06 1.06 5.72-5.72V10h1.5V3.25Z"></path>
-                    </svg>
+                    <ArrowTopRightOnSquareIcon className="ml-3 mt-1 w-4 h-4 text-gray-500" />
                   </div>
 
                   <dd className="text-gray-500 md:text-md dark:text-gray-400">
@@ -326,14 +404,7 @@ export const ArticleInfo = () => {
                     <dt className="text-md font-semibold mb-1 ">
                       Author address
                     </dt>
-                    <svg
-                      viewBox="0 0 20 20"
-                      className="ml-3 mt-0.5 h-5 w-5 fill-slate-400"
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                    >
-                      <path d="M7 3.25H3.25v13.5h13.5V13h-1.5v2.25H4.75V4.75H7v-1.5Zm9.75 0H10v1.5h4.19l-5.72 5.72 1.06 1.06 5.72-5.72V10h1.5V3.25Z"></path>
-                    </svg>
+                    <ArrowTopRightOnSquareIcon className="ml-3 mt-1 w-4 h-4 text-gray-500" />
                   </div>
 
                   <dd className="  text-gray-500 md:text-md dark:text-gray-400">

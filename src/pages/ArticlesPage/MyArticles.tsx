@@ -9,7 +9,7 @@ import { selectArticles } from '@/store/article/ArticleSelectors';
 import { selectArticlesLoading } from '@/store/loader/LoaderSelectors';
 import { ShortArticle } from '@/types/ArticleTypes';
 
-export const ArticlesPage = () => {
+export const MyArticles = () => {
   const dispatch = useDispatch();
   const articles: ShortArticle[] = useSelector(selectArticles);
   const articlesLoading = useSelector(selectArticlesLoading);
