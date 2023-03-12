@@ -7,12 +7,14 @@ type ButtonProps = {
   size?: 's' | 'm' | 'l';
   onClick: () => any;
   children: React.ReactNode;
+  disabled?: boolean;
 };
 
 export const Button: FC<ButtonProps> = ({
   className,
   size = 'm',
   round = false,
+  disabled,
   loading,
   onClick,
   children,
@@ -28,16 +30,24 @@ export const Button: FC<ButtonProps> = ({
     }
   }, [size]);
 
+  const btnBgClass = useMemo(() => {
+    const defaultBg = 'bg-indigo-600 hover:bg-indigo-500';
+
+    if (loading || disabled) {
+      return 'bg-gray-300';
+    }
+
+    return defaultBg;
+  }, [loading, disabled]);
+
   return (
     <button
-      disabled={loading}
+      disabled={loading || disabled}
       type="submit"
       onClick={onClick}
       className={`${className} ${btnSizeClass} ${
         round ? 'rounded-full' : ''
-      }  ${!loading ? 'bg-indigo-600' : 'bg-gray-300'} font-medium text-white ${
-        !loading && 'hover:bg-indigo-500'
-      } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+      }  ${btnBgClass} font-medium text-white  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
     >
       {loading && (
         <svg

@@ -69,7 +69,7 @@ export interface IProjectService {
     tokenAddress,
     tokenId,
     network,
-  }): Promise<AxiosResponse<any>>;
+  }): Promise<AxiosResponse<any> | { isError: boolean } | null>;
   getArticles(): Promise<AxiosResponse<any>>;
   getArticleInfo(id: string): Promise<AxiosResponse<any>>;
 }

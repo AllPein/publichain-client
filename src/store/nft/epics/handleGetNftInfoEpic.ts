@@ -21,7 +21,21 @@ export const handleGetNftInfo: Epic<
         projectService.getNftInformation({ tokenAddress, tokenId, network }),
       ).pipe(
         tap((data: any) => {
-          if (data) {
+          if (data?.isError) {
+            dispatch(
+              NftAction.setNftInformation({
+                id,
+                nftInfo: null,
+              }),
+            );
+
+            dispatch(
+              NftAction.setNftInformationError({
+                id,
+                error: true,
+              }),
+            );
+          } else if (data?.nft) {
             dispatch(
               NftAction.setNftInformation({
                 id,
@@ -32,6 +46,13 @@ export const handleGetNftInfo: Epic<
                   network,
                   imageUrl: data.nft.cached_file_url,
                 },
+              }),
+            );
+
+            dispatch(
+              NftAction.setNftInformationError({
+                id,
+                error: false,
               }),
             );
           }

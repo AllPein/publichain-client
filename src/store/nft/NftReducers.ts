@@ -4,6 +4,7 @@ import { NftAction, NftStore } from './NftActions';
 
 export const nftStoreInitialState: NftStore = Object.freeze({
   nftInformation: null,
+  nftInformationError: null,
 });
 
 export const NftReducers = reducerWithInitialState<NftStore>(
@@ -15,6 +16,15 @@ export const NftReducers = reducerWithInitialState<NftStore>(
       nftInformation: {
         ...state.nftInformation,
         [id]: nftInfo,
+      },
+    };
+  })
+  .case(NftAction.setNftInformationError, (state, { id, error }): NftStore => {
+    return {
+      ...state,
+      nftInformationError: {
+        ...state.nftInformationError,
+        [id]: error,
       },
     };
   })

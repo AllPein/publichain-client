@@ -54,7 +54,7 @@ class ProjectService implements IProjectService {
     tokenAddress,
     tokenId,
     network,
-  }): Promise<AxiosResponse<never>> {
+  }): Promise<AxiosResponse<never> | { isError: boolean } | null> {
     try {
       const res = await this.#axiosClient.get(
         `/${tokenAddress}/${tokenId}?chain=${network}`,
@@ -66,12 +66,17 @@ class ProjectService implements IProjectService {
           },
         },
       );
-      console.log(res);
 
       return res.data as any;
     } catch (err) {
-      console.log(err);
+      if (err) {
+        return {
+          isError: true,
+        };
+      }
     }
+
+    return null;
   }
 }
 

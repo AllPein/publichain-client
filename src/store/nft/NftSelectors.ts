@@ -9,3 +9,11 @@ export const selectNftInformation = createSelector(
   ],
   (nftInformation, id) => nftInformation?.[id],
 );
+
+export const selectNftInformationError = createSelector(
+  [
+    (state: RootState, id: string) => state.nft.nftInformationError,
+    (state: RootState, id: string) => id,
+  ],
+  (nftInformationError, id) => nftInformationError?.[id],
+);
