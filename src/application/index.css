@@ -36,6 +36,16 @@
   }
 }
 
+.break-word {
+  word-break: break-word;
+}
+
+mark {
+  background-color: #facc15;
+  border-radius: 0.4rem;
+  padding: 0.2rem;
+}
+
 .codex-editor__redactor {
   padding-bottom: 0 !important;
 }

@@ -39,7 +39,11 @@ export const NftToolComponent = ({ nft, id, setData }) => {
   return (
     <div className="text-center cursor-pointer max-w-sm bg-white border border-gray-200 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700">
       {nftInfo?.imageUrl ? (
-        <img className="rounded-t-xl" src={nftInfo?.imageUrl} />
+        <img
+          style={{ width: 382, height: 382 }}
+          className="rounded-t-xl"
+          src={nftInfo?.imageUrl}
+        />
       ) : (
         <div
           className="bg-gray-100 rounded-t-xl flex items-center justify-center"

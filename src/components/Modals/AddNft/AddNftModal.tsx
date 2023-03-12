@@ -188,7 +188,7 @@ export const AddNftModal: FC = () => {
           </div>
         </form>
         {nftInformationError && (
-          <div className="mt-4 break-normal text-red-600">
+          <div className="mt-4 break-word text-red-600">
             NFT with provided data has not been found
           </div>
         )}

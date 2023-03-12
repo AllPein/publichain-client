@@ -1,9 +1,7 @@
+import CodeBox from '@bomdi/codebox';
 import CheckList from '@editorjs/checklist';
-import Code from '@editorjs/code';
-import Delimiter from '@editorjs/delimiter';
 import Header from '@editorjs/header';
 import Image from '@editorjs/image';
-import InlineCode from '@editorjs/inline-code';
 import List from '@editorjs/list';
 import Marker from '@editorjs/marker';
 import Paragraph from '@editorjs/paragraph';
@@ -21,7 +19,7 @@ export const EDITOR_JS_TOOLS = {
   },
   list: List,
   warning: Warning,
-  code: Code,
+  code: CodeBox,
   nft: Nft,
   image: {
     class: Image,
@@ -41,6 +39,4 @@ export const EDITOR_JS_TOOLS = {
   quote: Quote,
   marker: Marker,
   checklist: CheckList,
-  delimiter: Delimiter,
-  inlineCode: InlineCode,
 };

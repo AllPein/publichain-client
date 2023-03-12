@@ -2,10 +2,14 @@ import React from 'react';
 
 // import { useSelector } from 'react-redux';
 import Blocks from 'editorjs-blocks-react-renderer';
+import { CodeBoxOutput } from 'editorjs-react-renderer';
 
+import { Checkbox } from '@/components/Editor/Renderers/Checkbox/CheckboxRenderer';
 import { Image } from '@/components/Editor/Renderers/Image/ImageRenderer';
 import { List } from '@/components/Editor/Renderers/List/ListRenderer';
+import { Nft } from '@/components/Editor/Renderers/Nft/NftRenderer';
 import { Quote } from '@/components/Editor/Renderers/Quote/QuoteRenderer';
+import { Warning } from '@/components/Editor/Renderers/Warning/WarningRenderer';
 // import { selectArticleInfo } from '@/store/article/ArticleSelectors';
 import { trimAccountAddress } from '@/utils/stringHelper';
 
@@ -99,6 +103,29 @@ export const ArticleInfo = () => {
         },
       },
       {
+        id: 'asfaafa',
+        type: 'nft',
+        data: {
+          imageUrl: undefined,
+          name: 'Mirascapes',
+          tokenAddress: '0x23581767a106ae21c074b2276d25e5c3e136a68b',
+          tokenId: '1',
+          network: 'ethereum',
+        },
+      },
+      {
+        id: 'asfaaf1124a',
+        type: 'nft',
+        data: {
+          imageUrl:
+            'https://storage.googleapis.com/sentinel-nft/raw-assets/4483d594c929e1e5bf33a7aa56f2f5436115c192192bcd6e443d738e4ec63abb.png',
+          name: 'Moonbirds',
+          tokenAddress: '0x23581767a106ae21c074b2276d25e5c3e136a68b',
+          tokenId: '1',
+          network: 'ethereum',
+        },
+      },
+      {
         id: 'ksCokKAhQw',
         type: 'paragraph',
         data: {
@@ -141,6 +168,33 @@ export const ArticleInfo = () => {
         },
       },
       {
+        id: 'eq06PsNffsab',
+        type: 'warning',
+        data: {
+          text: 'Simple warning',
+        },
+      },
+      {
+        id: 'eq06PsNffsa122412b',
+        type: 'checkbox',
+        data: {
+          items: [
+            {
+              text: 'Сходить в туалет',
+              checked: true,
+            },
+            {
+              text: 'Проснуться',
+              checked: false,
+            },
+            {
+              text: 'Встать с кровати',
+              checked: false,
+            },
+          ],
+        },
+      },
+      {
         id: 'hZAjSnqYMX',
         type: 'image',
         data: {
@@ -168,6 +222,10 @@ export const ArticleInfo = () => {
             list: List,
             quote: Quote as any,
             image: Image as any,
+            nft: Nft,
+            warning: Warning,
+            checkbox: Checkbox,
+            code: CodeBoxOutput,
           }}
           config={{
             code: {
