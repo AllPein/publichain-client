@@ -74,7 +74,9 @@ export const Modals = () => {
   return (
     <div>
       {modals.map((modal, i) => (
-        <div key={i}>{modalOpen(modal.key) && modal.renderer}</div>
+        <div key={modal.renderer.toString()}>
+          {modalOpen(modal.key) && modal.renderer}
+        </div>
       ))}
     </div>
   );

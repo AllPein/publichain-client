@@ -40,7 +40,7 @@ export const Nft: FC<NftProps> = ({ data }) => {
             target="_blank"
             href={`https://etherscan.io/address/${data.tokenAddress}`}
           >
-            <span className="inline-block  cursor-pointer bg-gray-200 hover:bg-gray-100 rounded-full px-3 py-1 text-xs font-light text-gray-700 mr-2 mb-2">
+            <span className="transition duration-300 ease-in-out inline-block  cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-full px-3 py-1 text-xs font-normal text-gray-500 hover:text-gray-700 mr-2 mb-2">
               {data.tokenAddress.slice(0, 10)}...
             </span>
           </a>

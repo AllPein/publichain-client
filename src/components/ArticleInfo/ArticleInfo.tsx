@@ -279,8 +279,8 @@ export const ArticleInfo = () => {
 
   return (
     <div className="max-w-full flex flex-col justify-center items-center overflow-x-hidden overflow-y-auto">
-      <div className="max-w-6xl">
-        <div className="inline-flex items-center w-full justify-start rounded-mdpx-4 py-12 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+      <div className="max-w-4xl">
+        <div className="inline-flex items-end w-full justify-start rounded-mdpx-4 pb-12 pt-6 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
           <a
             className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
             id="dropdownMenuButton2"
@@ -301,10 +301,11 @@ export const ArticleInfo = () => {
               </p>
             </div>
           </a>
+          <p className="text-gray-400 ml-6 font-light">30.09.2018</p>
           {speaking ? (
             <a className="flex ml-10 cursor-pointer" onClick={() => cancel()}>
-              <p className="text-black">Stop</p>
-              <StopCircleIcon className="ml-1 h-5 w-5 text-black" />
+              <p className="text-indigo-600 font-light">Stop</p>
+              <StopCircleIcon className="ml-1 h-5 w-5 text-indigo-600" />
             </a>
           ) : (
             <a
@@ -316,14 +317,21 @@ export const ArticleInfo = () => {
                 })
               }
             >
-              <p className="text-black">Listen</p>
-              <PlayCircleIcon className="ml-1 h-5 w-5 text-black" />
+              <p className="text-indigo-600 font-light">Listen</p>
+              <PlayCircleIcon className="ml-1 h-5 w-5 text-indigo-600" />
             </a>
           )}
         </div>
-        <h1 className="text-center text-8xl my-12 font-poppins">
-          {articleInfo.title}
-        </h1>
+        <div className="mb-32 mt-16 flex flex-col justify-between">
+          <h1 className="text-center  text-8xl font-poppins break-word">
+            {articleInfo.title}
+          </h1>
+          <div className="mt-32 flex justify-end mr-4">
+            <span className="transition duration-300 ease-in-out bg-gray-100 rounded-full px-3 py-1 text-xs font-normal text-gray-600">
+              500 collected
+            </span>
+          </div>
+        </div>
 
         <Blocks
           data={data}
@@ -372,13 +380,10 @@ export const ArticleInfo = () => {
             },
           }}
         />
-        <div className="py-12">
-          <div className="flex flex-col items-center mt-12">
-            <p className="mb-4 text-xl font-medium  dark:text-neutral-50">
-              Publication information
-            </p>
-            <dl className="max-w-lg text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
-              <div className="flex flex-col pb-3 hover:bg-gray-100 p-3 cursor-pointer">
+        <div className="pt-32 pb-20">
+          <div className="flex justify-between mt-12">
+            <dl className="max-w-lg bg-gray-100 rounded-xl p-4 text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+              <div className=" transition ease-in-out duration-150 rounded-md hover:bg-gray-200 flex flex-col pb-3 p-3 cursor-pointer">
                 <a
                   target="_blank"
                   href={`https://testnet.xrpl.org/transactions/${articleInfo.transactionId}`}
@@ -395,7 +400,50 @@ export const ArticleInfo = () => {
                   </dd>
                 </a>
               </div>
-              <div className="flex flex-col p-3 hover:bg-gray-100  cursor-pointer">
+              <div className="transition ease-in-out duration-150 rounded-md flex flex-col p-3 hover:bg-gray-200  cursor-pointer">
+                <a
+                  target="_blank"
+                  href={`https://testnet.xrpl.org/accounts/${articleInfo.author.address}`}
+                >
+                  <div className="inline-flex">
+                    <dt className="text-md font-semibold mb-1 ">
+                      Author address
+                    </dt>
+                    <ArrowTopRightOnSquareIcon className="ml-3 mt-1 w-4 h-4 text-gray-500" />
+                  </div>
+
+                  <dd className="  text-gray-500 md:text-md dark:text-gray-400">
+                    {articleInfo.author.address}
+                  </dd>
+                </a>
+              </div>
+
+              <div className="flex flex-col p-3">
+                <dt className="mb-1 text-md font-semibold">Content digest</dt>
+                <dd className=" text-gray-500 md:text-md dark:text-gray-400">
+                  3WQQzeEv_UYYJaa…N28pKintdpiH5EA
+                </dd>
+              </div>
+            </dl>
+            <dl className="max-w-lg bg-gray-100 rounded-xl p-4 text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+              <div className=" transition ease-in-out duration-150 rounded-md hover:bg-gray-200 flex flex-col pb-3 p-3 cursor-pointer">
+                <a
+                  target="_blank"
+                  href={`https://testnet.xrpl.org/transactions/${articleInfo.transactionId}`}
+                >
+                  <div className="inline-flex w-full">
+                    <dt className="text-md font-semibold mb-1 ">
+                      Transaction ID
+                    </dt>
+                    <ArrowTopRightOnSquareIcon className="ml-3 mt-1 w-4 h-4 text-gray-500" />
+                  </div>
+
+                  <dd className="text-gray-500 md:text-md dark:text-gray-400">
+                    {articleInfo.transactionId}
+                  </dd>
+                </a>
+              </div>
+              <div className="transition ease-in-out duration-150 rounded-md flex flex-col p-3 hover:bg-gray-200  cursor-pointer">
                 <a
                   target="_blank"
                   href={`https://testnet.xrpl.org/accounts/${articleInfo.author.address}`}
