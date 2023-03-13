@@ -327,7 +327,7 @@ export const ArticleInfo = () => {
             {articleInfo.title}
           </h1>
           <div className="mt-32 flex justify-end mr-4">
-            <span className="transition duration-300 ease-in-out bg-gray-100 rounded-full px-3 py-1 text-xs font-normal text-gray-600">
+            <span className="bg-gray-100 rounded-full px-3 py-1 text-xs font-normal text-gray-600">
               500 collected
             </span>
           </div>

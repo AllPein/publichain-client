@@ -45,13 +45,13 @@ export const Button: FC<ButtonProps> = ({
       disabled={loading || disabled}
       type="submit"
       onClick={onClick}
-      className={`${className} ${btnSizeClass} ${
+      className={`inline-flex items-center ${className} ${btnSizeClass} ${btnBgClass} ${
         round ? 'rounded-full' : ''
-      }  ${btnBgClass} font-medium text-white  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+      } font-medium text-white  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
     >
       {loading && (
         <svg
-          className="motion-reduce:hidden animate-spin -ml-1 mr-3  mt-1 h-5 w-5 text-white"
+          className="motion-reduce:hidden animate-spin -ml-1 mr-3 h-5 w-5 text-white"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
