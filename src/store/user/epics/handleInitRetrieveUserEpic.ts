@@ -1,4 +1,5 @@
 /* eslint-disable import/no-cycle */
+import axios from 'axios';
 import { Epic } from 'redux-observable';
 import { filter, ignoreElements, tap } from 'rxjs/operators';
 import { AnyAction } from 'typescript-fsa';
@@ -20,10 +21,15 @@ export const handleInitRetrieveUser: Epic<
     ofAction(WebsocketAction.handleMessage),
     filter(({ payload }) => payload.event === 'USER_INFO'),
     tap(({ payload }) => {
-      localStorage.setItem('token', (payload.data as AccountInfo).token);
-      dispatch(UserAction.setAccountInfo(payload.data as AccountInfo));
-      dispatch(UserAction.setIsLoggedIn(true));
-      dispatch(ModalActions.closeModal('login'));
+      if (payload.data) {
+        localStorage.setItem('token', (payload.data as AccountInfo).token);
+        axios.defaults.headers.common['Authorization'] = (
+          payload.data as AccountInfo
+        ).address!;
+        dispatch(UserAction.setAccountInfo(payload.data as AccountInfo));
+        dispatch(UserAction.setIsLoggedIn(true));
+        dispatch(ModalActions.closeModal('login'));
+      }
     }),
     tap(() => dispatch(LoaderAction.setLoaded('auth'))),
     ignoreElements(),

@@ -104,9 +104,10 @@ export const RegisterModal: FC = () => {
   return (
     <Modal
       title="Sign Up to Writty"
+      size="m"
       onClose={onClose}
       closable
-      isOpen={modalData.isOpen}
+      isOpen={true}
       footer={footer}
     >
       {body}

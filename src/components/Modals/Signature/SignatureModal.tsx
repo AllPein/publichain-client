@@ -30,6 +30,7 @@ export const SignatureModal: FC = () => {
 
   return (
     <Modal
+      size="m"
       onClose={onClose}
       title="Publication result"
       isOpen={modalData.isOpen}

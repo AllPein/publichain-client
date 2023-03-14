@@ -45,9 +45,9 @@ export const Button: FC<ButtonProps> = ({
       disabled={loading || disabled}
       type="submit"
       onClick={onClick}
-      className={`inline-flex items-center ${className} ${btnSizeClass} ${btnBgClass} ${
+      className={`transition duration-150 ease-in-out inline-flex items-center justify-center ${className} ${btnSizeClass} ${btnBgClass} ${
         round ? 'rounded-full' : ''
-      } font-medium text-white  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+      } font-medium text-white`}
     >
       {loading && (
         <svg

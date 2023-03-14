@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '@/components/Button/Button';
+import { UserAction } from '@/store/user/UserAction';
 import { selectUserInfo } from '@/store/user/UserSelectors';
 import { trimAccountAddress } from '@/utils/stringHelper';
 
 export const AccountPage = () => {
+  const dispatch = useDispatch();
+
   const accountInfo = useSelector(selectUserInfo);
 
-  const [name, setName] = useState('');
-  const [bio, setBio] = useState<string | undefined>('');
+  const [name, setName] = useState<string>('');
+  const [bio, setBio] = useState<string>('');
 
   useEffect(() => {
     if (accountInfo) {
       setName(accountInfo.name);
-      setBio(accountInfo.bio);
+      setBio(accountInfo.bio || '');
     }
   }, [accountInfo]);
 
@@ -26,12 +29,18 @@ export const AccountPage = () => {
     setBio(e.target.value);
   };
 
+  const handleUpdateUser = useCallback(() => {
+    dispatch(
+      UserAction.initUpdateUser({ address: accountInfo!.address!, name, bio }),
+    );
+  }, [name, bio]);
+
   return (
     <div className="flex justify-center font-poppins pt-2">
       <div className="shadow-xl w-1/2 text-center py-12 rounded-t-sm">
         <div className="flex justify-center">
           <img
-            src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg"
+            src={accountInfo?.imageUrl}
             className="rounded-full w-32 h-32"
             alt=""
             loading="lazy"
@@ -47,7 +56,7 @@ export const AccountPage = () => {
           </div>
         )}
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs mt-2 font-light text-gray-700 mr-2 mb-2">
-          {trimAccountAddress('0xd66a159c593f775081847c1fb0f958734e1db9c0')}
+          {trimAccountAddress(accountInfo?.address || '')}
         </span>
         <form className="space-y-8 mt-8 px-12 text-left">
           <div>
@@ -80,7 +89,7 @@ export const AccountPage = () => {
           </div>
         </form>
 
-        <Button onClick={() => {}} className="mt-6">
+        <Button onClick={handleUpdateUser} className="mt-10 w-48">
           Save
         </Button>
       </div>

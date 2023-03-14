@@ -22,7 +22,7 @@ const Group: FC<{
   items: NestedListItem[];
   className?: string;
 }> = ({ Tag, items, ...props }) => (
-  <Tag {...props}>
+  <Tag {...props} className="marker:text-indigo-600 mt-4">
     {items.map((item, i) => (
       <Bullet key={i}>
         {typeof item === 'string' ? (

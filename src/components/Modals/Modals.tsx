@@ -48,7 +48,7 @@ export const Modals = () => {
   const modalOpen = useCallback(
     (key) => {
       switch (key) {
-        case 'regiser':
+        case 'register':
           return registerModal.isOpen;
         case 'login':
           return loginModal.isOpen;
@@ -74,7 +74,7 @@ export const Modals = () => {
   return (
     <div>
       {modals.map((modal, i) => (
-        <div key={modal.renderer.toString()}>
+        <div key={modal.renderer.toString() + i}>
           {modalOpen(modal.key) && modal.renderer}
         </div>
       ))}

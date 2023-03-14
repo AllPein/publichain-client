@@ -16,7 +16,7 @@ export const LoginModal: FC = () => {
   }
 
   const body = (
-    <>
+    <div className="flex flex-col items-center">
       <p className="mt-6 text-center text-slate-500 text-md leading-relaxed">
         Scan QR code with your Xumm mobile application
       </p>
@@ -25,7 +25,7 @@ export const LoginModal: FC = () => {
         style={{ height: 350, width: 350 }}
         src={modalData.payload.src}
       />
-    </>
+    </div>
   );
 
   /** Methods */
@@ -36,6 +36,7 @@ export const LoginModal: FC = () => {
 
   return (
     <Modal
+      size="s"
       onClose={onClose}
       closable
       title="Connect to Writty"

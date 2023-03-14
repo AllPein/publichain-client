@@ -4,7 +4,7 @@ import {
   RawAxiosRequestHeaders,
 } from 'axios';
 
-import { XummWallet } from '@/store/StoreTypes';
+import { AccountInfo, XummWallet } from '@/store/StoreTypes';
 import { XummPkce } from '@/utils/window';
 
 export interface AxiosClient {
@@ -71,5 +71,6 @@ export interface IProjectService {
     network,
   }): Promise<AxiosResponse<any> | { isError: boolean } | null>;
   getArticles(): Promise<AxiosResponse<any>>;
+  updateUserInfo({ address, name, bio }): Promise<AxiosResponse<AccountInfo>>;
   getArticleInfo(id: string): Promise<AxiosResponse<any>>;
 }

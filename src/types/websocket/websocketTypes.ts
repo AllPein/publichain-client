@@ -14,6 +14,7 @@ export type WebSocketType =
   | 'REGISTER'
   | 'USER_INFO'
   | 'PUBLISH'
+  | 'COLLECT'
   | 'PUBLISH_RESULT';
 
 export type WebSocketMessage = {

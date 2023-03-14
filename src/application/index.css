@@ -38,6 +38,8 @@
 
 .break-word {
   word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 mark {

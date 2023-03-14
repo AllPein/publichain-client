@@ -49,6 +49,7 @@ const CreateArticlePage = () => {
           address: accountInfo!.address,
           title: headingValue,
           body: savedData,
+          supply: 200,
         },
       }),
     );

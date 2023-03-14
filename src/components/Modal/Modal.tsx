@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback } from 'react';
+import React, { Fragment, useCallback, useMemo } from 'react';
 
 import { Dialog, Transition } from '@headlessui/react';
 
@@ -7,11 +7,13 @@ type ModalProps = {
   title?: string;
   onClose?: (value: boolean) => void;
   footer?: React.ReactNode;
+  size?: 's' | 'm' | 'l';
   closable?: boolean;
   children: React.ReactNode;
 };
 
 const Modal: React.FC<ModalProps> = ({
+  size = 'l',
   isOpen,
   title = 'Modal title',
   onClose,
@@ -30,6 +32,17 @@ const Modal: React.FC<ModalProps> = ({
       onClose(true);
     }
   }, [onClose, closable]);
+
+  const modalWidthClass = useMemo(() => {
+    switch (size) {
+      case 's':
+        return 'w-md';
+      case 'm':
+        return 'w-lg';
+      default:
+        return 'w-1/2';
+    }
+  }, [size]);
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -57,7 +70,9 @@ const Modal: React.FC<ModalProps> = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-1/2 break-all transform overflow-hidden rounded-2xl bg-white p-10 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel
+                className={`${modalWidthClass} break-all transform overflow-hidden rounded-2xl bg-white p-10 text-left align-middle shadow-xl transition-all`}
+              >
                 <Dialog.Title
                   as="h3"
                   className="text-xl font-medium leading-6 text-gray-900"

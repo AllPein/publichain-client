@@ -1,9 +1,19 @@
 import React from 'react';
 
+import moment from 'moment';
+
 import { goTo } from '@/utils/routerActions';
 import { trimAccountAddress } from '@/utils/stringHelper';
 
-export const ArticleCard = ({ title, description, author, internalUrl }) => {
+export const ArticleCard = ({
+  title,
+  description,
+  _count,
+  author,
+  internalUrl,
+  createdAt,
+  maxAmount,
+}) => {
   return (
     <div
       className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
@@ -29,10 +39,10 @@ export const ArticleCard = ({ title, description, author, internalUrl }) => {
         </div>
         <div className="flex justify-between items-center mt-4 break-word">
           <span className="mt-4 bg-gray-100 font-medium rounded-full px-3 py-1 text-xs text-gray-700">
-            20.09.2018
+            {moment(createdAt).format('DD.MM.YYYY')}
           </span>
           <span className="mt-4 bg-indigo-600 font-medium rounded-full px-3 py-1 text-xs text-gray-50">
-            500 collectors
+            {_count.collectors}/{maxAmount} collected
           </span>
         </div>
       </div>

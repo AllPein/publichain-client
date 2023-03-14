@@ -104,7 +104,7 @@ export const AddNftModal: FC = () => {
   const body = (
     <div
       style={{ height: 450 }}
-      className="flex overflow-hidden bg-white rounded-lg shadow-xl w-full mx-2 mt-12"
+      className="flex overflow-hidden bg-white rounded-lg shadow-lg w-full mt-12"
     >
       <div className="text-center w-1/2 cursor-pointer bg-white border border-gray-200 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700">
         {nftInformation?.imageUrl ? (
@@ -198,7 +198,7 @@ export const AddNftModal: FC = () => {
 
   const footer = (
     <Button
-      disabled={!nftInformation}
+      disabled={!nftInformation || !tokenId.length}
       className="mt-6 text-center"
       onClick={handleCreateBlock}
     >

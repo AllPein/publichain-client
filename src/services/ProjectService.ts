@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 
 import { AxiosClient, IProjectService } from '@/services/types';
+import { AccountInfo } from '@/store/StoreTypes';
 import { XummPkce } from '@/utils/window';
 
 class ProjectService implements IProjectService {
@@ -40,6 +41,26 @@ class ProjectService implements IProjectService {
     }
   }
 
+  async getMyArticles(): Promise<AxiosResponse<any>> {
+    try {
+      const res = await this.#axiosClient.get('/articles/my');
+
+      return res;
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  async getCollectedArticles(): Promise<AxiosResponse<any>> {
+    try {
+      const res = await this.#axiosClient.get('/articles/collected');
+
+      return res;
+    } catch (err: any) {
+      return err;
+    }
+  }
+
   async getArticleInfo(id: string): Promise<AxiosResponse<any>> {
     try {
       const res = await this.#axiosClient.get(`/articles/${id}`);
@@ -47,6 +68,26 @@ class ProjectService implements IProjectService {
       return res;
     } catch (err: any) {
       return err.response.data.error;
+    }
+  }
+
+  async updateUserInfo({
+    address,
+    name,
+    bio,
+  }): Promise<AxiosResponse<AccountInfo>> {
+    try {
+      const res = await this.#axiosClient.patch<AccountInfo, unknown>(
+        `/users/${address}`,
+        {
+          name,
+          bio,
+        },
+      );
+
+      return res;
+    } catch (err: any) {
+      return err;
     }
   }
 

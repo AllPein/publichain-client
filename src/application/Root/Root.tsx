@@ -12,12 +12,12 @@ const ArticlesPage = lazy(
 
 const MyArticlesPage = lazy(
   () => import('@/pages/ArticlesPage/MyArticles'),
-  'MyArticlesPage',
+  'MyArticles',
 );
 
 const CollectedArticlesPage = lazy(
   () => import('@/pages/ArticlesPage/CollectedArticles'),
-  'CollectedArticlesPage',
+  'CollectedArticles',
 );
 
 const ArticlePage = lazy(
