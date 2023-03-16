@@ -25,9 +25,9 @@ const ArticlePage = lazy(
   'ArticlePage',
 );
 
-const CreateArticlePage = lazy(
-  () => import('@/pages/CreateArticlePage/CreateArticlePage'),
-  'CreateArticlePage',
+const ModifyArticlePage = lazy(
+  () => import('@/pages/ModifyArticlePage/ModifyArticlePage'),
+  'ModifyArticlePage',
 );
 
 const AccountPage = lazy(
@@ -43,7 +43,7 @@ const routes = [
   {
     path: '/create-article',
     children: isLoggedIn ? (
-      <CreateArticlePage />
+      <ModifyArticlePage />
     ) : (
       <Redirect to={REDIRECT_PATH} />
     ),
@@ -75,7 +75,7 @@ const routes = [
   {
     path: '/edit/:articleId',
     children: isLoggedIn ? (
-      <CreateArticlePage />
+      <ModifyArticlePage isEditing={true} />
     ) : (
       <Redirect to={REDIRECT_PATH} />
     ),

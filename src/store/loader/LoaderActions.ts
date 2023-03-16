@@ -2,7 +2,12 @@ import actionCreatorFactory from 'typescript-fsa';
 
 const factory = actionCreatorFactory('loader');
 
-export type LoadingType = 'auth' | 'publish' | 'articles' | 'articleInfo';
+export type LoadingType =
+  | 'auth'
+  | 'publish'
+  | 'articles'
+  | 'articleInfo'
+  | 'mutate';
 
 export type LoadingState = {
   key: LoadingType;

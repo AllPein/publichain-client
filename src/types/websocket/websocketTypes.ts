@@ -14,6 +14,7 @@ export type WebSocketType =
   | 'REGISTER'
   | 'USER_INFO'
   | 'PUBLISH'
+  | 'MUTATE'
   | 'COLLECT'
   | 'PUBLISH_RESULT';
 

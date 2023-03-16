@@ -51,6 +51,7 @@ export const PublicationResultModal: FC = () => {
   return (
     <Modal
       onClose={onClose}
+      closable={!isSuccess}
       size="s"
       title="Publication result"
       isOpen={modalData.isOpen}

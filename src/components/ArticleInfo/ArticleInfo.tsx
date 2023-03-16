@@ -20,7 +20,6 @@ import { Nft } from '@/components/Editor/Renderers/Nft/NftRenderer';
 import { Quote } from '@/components/Editor/Renderers/Quote/QuoteRenderer';
 import { Warning } from '@/components/Editor/Renderers/Warning/WarningRenderer';
 import { selectArticleInfo } from '@/store/article/ArticleSelectors';
-import { selectUserInfo } from '@/store/user/UserSelectors';
 import { WebsocketAction } from '@/store/websocket/websocketActions';
 import { goTo } from '@/utils/routerActions';
 import {
@@ -56,13 +55,12 @@ const classConfig = {
   },
 };
 
-export const ArticleInfo = () => {
+export const ArticleInfo = ({ accountInfo }) => {
   const dispatch = useDispatch();
 
   const { speak, speaking, cancel } = useSpeechSynthesis();
 
   const articleInfo = useSelector(selectArticleInfo);
-  const accountInfo = useSelector(selectUserInfo);
 
   const handleCollect = useCallback(() => {
     dispatch(
@@ -132,7 +130,7 @@ export const ArticleInfo = () => {
   return (
     <div className="max-w-full flex flex-col justify-center items-center overflow-x-hidden overflow-y-auto">
       <div className="max-w-4xl">
-        <div className="inline-flex items-end w-full justify-start rounded-mdpx-4 pb-12 pt-6 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+        <div className="inline-flex items-end w-full justify-start rounded-mdpx-4 pb-6 pt-6 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
           <a
             className="hidden-arrow flex items-center whitespace-nowrap transition duration-150 ease-in-out motion-reduce:transition-none"
             id="dropdownMenuButton2"
@@ -158,13 +156,17 @@ export const ArticleInfo = () => {
           </p>
           {speakerBlock}
           {accountInfo?.address === articleInfo.author.address && (
-            <Button onClick={() => goTo(`/edit/${articleInfo.internalUrl}`)}>
+            <Button
+              className="ml-8"
+              size="s"
+              onClick={() => goTo(`/edit/${articleInfo.internalUrl}`)}
+            >
               Edit
             </Button>
           )}
         </div>
-        <div className="mb-32 mt-16 flex flex-col justify-between">
-          <h1 className="text-center  text-8xl font-poppins break-word">
+        <div className="mb-32 mt-32 flex flex-col justify-between">
+          <h1 className="text-center text-8xl font-poppins break-word">
             {articleInfo.title}
           </h1>
           <div className="mt-32 flex justify-end mr-4">

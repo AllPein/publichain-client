@@ -7,6 +7,10 @@ export type VegaWebSocketPayload = {
   PUBLISH_RESULT: boolean;
   PUBLISH: null;
   COLLECT: null;
+  MUTATE: {
+    result: boolean;
+    internalUrl: string;
+  };
 };
 
 export type VegaWebSocketSendPayload = {
@@ -16,6 +20,10 @@ export type VegaWebSocketSendPayload = {
   COLLECT: {
     address: string;
     url: string;
+  };
+  MUTATE: {
+    internalUrl: string;
+    body: any;
   };
   PUBLISH: {
     title: string;

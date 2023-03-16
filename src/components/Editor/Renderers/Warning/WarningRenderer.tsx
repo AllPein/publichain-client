@@ -11,7 +11,7 @@ export const Warning = ({ data }) => {
       <span className="mr-3 mt-px">
         <WarningIcon />
       </span>
-      {data.text}
+      {data.title}
     </div>
   );
 };
