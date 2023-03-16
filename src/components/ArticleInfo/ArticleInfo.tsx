@@ -22,6 +22,7 @@ import { Warning } from '@/components/Editor/Renderers/Warning/WarningRenderer';
 import { selectArticleInfo } from '@/store/article/ArticleSelectors';
 import { selectUserInfo } from '@/store/user/UserSelectors';
 import { WebsocketAction } from '@/store/websocket/websocketActions';
+import { goTo } from '@/utils/routerActions';
 import {
   parseArticleDataToSpeechSynthesisText,
   trimAccountAddress,
@@ -100,6 +101,30 @@ export const ArticleInfo = () => {
     );
   }, [articleInfo, accountInfo]);
 
+  const speakerBlock = useMemo(
+    () =>
+      speaking ? (
+        <a className="flex ml-10 cursor-pointer" onClick={() => cancel()}>
+          <p className="text-indigo-600 font-light">Stop</p>
+          <StopCircleIcon className="ml-1 h-5 w-5 text-indigo-600" />
+        </a>
+      ) : (
+        <a
+          className="flex ml-10 cursor-pointer"
+          onClick={() =>
+            speak({
+              text: textToSpeak,
+              rate: 0.8,
+            })
+          }
+        >
+          <p className="text-indigo-600 font-light">Listen</p>
+          <PlayCircleIcon className="ml-1 h-5 w-5 text-indigo-600" />
+        </a>
+      ),
+    [speaking, textToSpeak],
+  );
+
   if (!articleInfo) {
     return null;
   }
@@ -131,24 +156,11 @@ export const ArticleInfo = () => {
           <p className="text-gray-400 ml-6 font-light">
             {moment(articleInfo.createdAt).format('DD.MM.YYYY')}
           </p>
-          {speaking ? (
-            <a className="flex ml-10 cursor-pointer" onClick={() => cancel()}>
-              <p className="text-indigo-600 font-light">Stop</p>
-              <StopCircleIcon className="ml-1 h-5 w-5 text-indigo-600" />
-            </a>
-          ) : (
-            <a
-              className="flex ml-10 cursor-pointer"
-              onClick={() =>
-                speak({
-                  text: textToSpeak,
-                  rate: 0.8,
-                })
-              }
-            >
-              <p className="text-indigo-600 font-light">Listen</p>
-              <PlayCircleIcon className="ml-1 h-5 w-5 text-indigo-600" />
-            </a>
+          {speakerBlock}
+          {accountInfo?.address === articleInfo.author.address && (
+            <Button onClick={() => goTo(`/edit/${articleInfo.internalUrl}`)}>
+              Edit
+            </Button>
           )}
         </div>
         <div className="mb-32 mt-16 flex flex-col justify-between">

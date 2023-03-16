@@ -35,29 +35,61 @@ const AccountPage = lazy(
   'AccountPage',
 );
 
+const REDIRECT_PATH = '/explore';
+
+const isLoggedIn = !!localStorage.getItem('token');
+
+const routes = [
+  {
+    path: '/create-article',
+    children: isLoggedIn ? (
+      <CreateArticlePage />
+    ) : (
+      <Redirect to={REDIRECT_PATH} />
+    ),
+  },
+  {
+    path: '/article/:articleId',
+    children: <ArticlePage />,
+  },
+  {
+    path: '/explore',
+    children: <ArticlesPage />,
+  },
+  {
+    path: '/collected-articles',
+    children: isLoggedIn ? (
+      <CollectedArticlesPage />
+    ) : (
+      <Redirect to={REDIRECT_PATH} />
+    ),
+  },
+  {
+    path: '/my-articles',
+    children: isLoggedIn ? <MyArticlesPage /> : <Redirect to={REDIRECT_PATH} />,
+  },
+  {
+    path: '/account',
+    children: isLoggedIn ? <AccountPage /> : <Redirect to={REDIRECT_PATH} />,
+  },
+  {
+    path: '/edit/:articleId',
+    children: isLoggedIn ? (
+      <CreateArticlePage />
+    ) : (
+      <Redirect to={REDIRECT_PATH} />
+    ),
+  },
+];
+
 const Root = () => {
   const renderRoot = () => (
     <ApplicationLayout>
       <Switch>
-        <Redirect exact from="/" to="/explore" />
-        <Route exact path="/explore">
-          <ArticlesPage />
-        </Route>
-        <Route exact path="/article/:articleId">
-          <ArticlePage />
-        </Route>
-        <Route exact path="/account">
-          <AccountPage />
-        </Route>
-        <Route exact path="/my-articles">
-          <MyArticlesPage />
-        </Route>
-        <Route exact path="/collected-articles">
-          <CollectedArticlesPage />
-        </Route>
-        <Route exact path="/create-article">
-          <CreateArticlePage />
-        </Route>
+        <Redirect exact from="/" to={REDIRECT_PATH} />
+        {routes.map((route) => (
+          <Route key={route.path} exact {...route} />
+        ))}
       </Switch>
     </ApplicationLayout>
   );
