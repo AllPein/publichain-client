@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 
 import { AxiosClient, IProjectService } from '@/services/types';
 import { AccountInfo } from '@/store/StoreTypes';
+import { ArticleFilterType } from '@/types/ArticleTypes';
 import { XummPkce } from '@/utils/window';
 
 class ProjectService implements IProjectService {
@@ -54,6 +55,19 @@ class ProjectService implements IProjectService {
   async getCollectedArticles(): Promise<AxiosResponse<any>> {
     try {
       const res = await this.#axiosClient.get('/articles/collected');
+
+      return res;
+    } catch (err: any) {
+      return err;
+    }
+  }
+
+  async searchArticles(
+    searchValue: string,
+    type: ArticleFilterType,
+  ): Promise<AxiosResponse<any>> {
+    try {
+      const res = await this.#axiosClient.get(`/search/${type}/${searchValue}`);
 
       return res;
     } catch (err: any) {

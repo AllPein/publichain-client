@@ -7,6 +7,7 @@ export type LoadingType =
   | 'publish'
   | 'articles'
   | 'articleInfo'
+  | 'collect'
   | 'mutate';
 
 export type LoadingState = {

@@ -1,6 +1,10 @@
 import actionCreatorFactory from 'typescript-fsa';
 
-import { ArticleInfo, ShortArticle } from '@/types/ArticleTypes';
+import {
+  ArticleInfo,
+  SearchArticlesPayload,
+  ShortArticle,
+} from '@/types/ArticleTypes';
 
 const factory = actionCreatorFactory('article');
 
@@ -12,9 +16,7 @@ export type ArticleStore = {
 };
 
 export const ArticleAction = {
-  initGetArticles: factory('INIT_GET_ARTICLES'),
-  initGetMyArticles: factory('INIT_GET_MY_ARTICLES'),
-  initGetCollectedArticles: factory('INIT_GET_COLLECTED_ARTICLES'),
+  initSearchArticles: factory<SearchArticlesPayload>('INIT_SEARCH_ARTICLES'),
   initGetArticleInfo: factory<string>('INIT_GET_ARTICLE_INFO'),
   setArticles: factory<ShortArticle[]>('SET_ARTICLES'),
   setMyArticles: factory<ShortArticle[]>('SET_MY_ARTICLES'),

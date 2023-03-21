@@ -9,8 +9,10 @@ export const loaderStoreInitialState: LoaderStore = Object.freeze({
     articles: false,
     articleInfo: false,
     mutate: false,
+    collect: false,
   },
   loading: {
+    collect: false,
     auth: false,
     mutate: false,
     articleInfo: false,

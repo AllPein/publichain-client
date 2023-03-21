@@ -15,8 +15,7 @@ export const SignatureModal: FC = () => {
   const body = (
     <div className="flex flex-col items-center">
       <p className="mt-6  text-slate-500 text-md leading-relaxed">
-        Your publication has been successfuly created. Please, sign the
-        transaction via your Xumm applictaion.
+        Please, sign the transaction via your Xumm applictaion.
       </p>
       <Loader className="mt-12" />
     </div>
@@ -32,7 +31,7 @@ export const SignatureModal: FC = () => {
     <Modal
       size="m"
       onClose={onClose}
-      title="Publication result"
+      title="Awaiting signature"
       isOpen={modalData.isOpen}
       footer={null}
     >

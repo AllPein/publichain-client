@@ -17,6 +17,11 @@ export const selectPublicationResultModal = createSelector(
   (modalData) => modalData,
 );
 
+export const selectCollectResultModal = createSelector(
+  (state: RootState) => state.modal.modals['collectResult'],
+  (modalData) => modalData,
+);
+
 export const selectSignatureModal = createSelector(
   (state: RootState) => state.modal.modals['signature'],
   (modalData) => modalData,

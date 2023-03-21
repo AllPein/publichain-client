@@ -14,6 +14,17 @@ export type ShortArticle = {
   maxAmount: number;
 };
 
+export enum ArticleFilterType {
+  All = 'all',
+  My = 'my',
+  Collected = 'collected',
+}
+
+export type SearchArticlesPayload = {
+  searchValue: string;
+  type: ArticleFilterType;
+};
+
 export type ArticleInfo = {
   collected: boolean;
   createdAt: string;

@@ -19,7 +19,10 @@ import { List } from '@/components/Editor/Renderers/List/ListRenderer';
 import { Nft } from '@/components/Editor/Renderers/Nft/NftRenderer';
 import { Quote } from '@/components/Editor/Renderers/Quote/QuoteRenderer';
 import { Warning } from '@/components/Editor/Renderers/Warning/WarningRenderer';
+import { ModalActions } from '@/store/Modal/ModalActions';
 import { selectArticleInfo } from '@/store/article/ArticleSelectors';
+import { LoaderAction } from '@/store/loader/LoaderActions';
+import { selectCollectButtonLoading } from '@/store/loader/LoaderSelectors';
 import { WebsocketAction } from '@/store/websocket/websocketActions';
 import { goTo } from '@/utils/routerActions';
 import {
@@ -61,8 +64,11 @@ export const ArticleInfo = ({ accountInfo }) => {
   const { speak, speaking, cancel } = useSpeechSynthesis();
 
   const articleInfo = useSelector(selectArticleInfo);
+  const collectButtonLoading = useSelector(selectCollectButtonLoading);
 
   const handleCollect = useCallback(() => {
+    dispatch(LoaderAction.setLoading('collect'));
+
     dispatch(
       WebsocketAction.sendMessage({
         event: 'COLLECT',
@@ -70,6 +76,12 @@ export const ArticleInfo = ({ accountInfo }) => {
           address: accountInfo!.address,
           url: articleInfo!.internalUrl,
         },
+      }),
+    );
+
+    dispatch(
+      ModalActions.openModal({
+        key: 'signature',
       }),
     );
   }, [dispatch, accountInfo, articleInfo]);
@@ -93,7 +105,11 @@ export const ArticleInfo = ({ accountInfo }) => {
     }
 
     return (
-      <Button className="w-32 my-8" onClick={handleCollect}>
+      <Button
+        className="w-32 my-8"
+        onClick={handleCollect}
+        loading={collectButtonLoading}
+      >
         Collect
       </Button>
     );
@@ -190,7 +206,7 @@ export const ArticleInfo = ({ accountInfo }) => {
           config={classConfig}
         />
         <div className="pt-32 pb-20">
-          <div className="flex justify-between mt-12">
+          <div className="flex justify-center mt-12">
             <dl className="max-w-lg bg-gray-100 rounded-xl p-4 text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
               <div className=" transition ease-in-out duration-150 rounded-md hover:bg-gray-200 flex flex-col pb-3 p-3 cursor-pointer">
                 <a
@@ -204,7 +220,7 @@ export const ArticleInfo = ({ accountInfo }) => {
                     <ArrowTopRightOnSquareIcon className="ml-3 mt-1 w-4 h-4 text-gray-500" />
                   </div>
 
-                  <dd className="text-gray-500 md:text-md dark:text-gray-400">
+                  <dd className="text-gray-500 md:text-md dark:text-gray-400 break-word">
                     {articleInfo.transactionId}
                   </dd>
                 </a>
@@ -225,56 +241,6 @@ export const ArticleInfo = ({ accountInfo }) => {
                     {articleInfo.author.address}
                   </dd>
                 </a>
-              </div>
-
-              <div className="flex flex-col p-3">
-                <dt className="mb-1 text-md font-semibold">Content digest</dt>
-                <dd className=" text-gray-500 md:text-md dark:text-gray-400">
-                  3WQQzeEv_UYYJaa…N28pKintdpiH5EA
-                </dd>
-              </div>
-            </dl>
-            <dl className="max-w-lg bg-gray-100 rounded-xl p-4 text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
-              <div className=" transition ease-in-out duration-150 rounded-md hover:bg-gray-200 flex flex-col pb-3 p-3 cursor-pointer">
-                <a
-                  target="_blank"
-                  href={`https://testnet.xrpl.org/transactions/${articleInfo.transactionId}`}
-                >
-                  <div className="inline-flex w-full">
-                    <dt className="text-md font-semibold mb-1 ">
-                      Transaction ID
-                    </dt>
-                    <ArrowTopRightOnSquareIcon className="ml-3 mt-1 w-4 h-4 text-gray-500" />
-                  </div>
-
-                  <dd className="text-gray-500 md:text-md dark:text-gray-400">
-                    {articleInfo.transactionId}
-                  </dd>
-                </a>
-              </div>
-              <div className="transition ease-in-out duration-150 rounded-md flex flex-col p-3 hover:bg-gray-200  cursor-pointer">
-                <a
-                  target="_blank"
-                  href={`https://testnet.xrpl.org/accounts/${articleInfo.author.address}`}
-                >
-                  <div className="inline-flex">
-                    <dt className="text-md font-semibold mb-1 ">
-                      Author address
-                    </dt>
-                    <ArrowTopRightOnSquareIcon className="ml-3 mt-1 w-4 h-4 text-gray-500" />
-                  </div>
-
-                  <dd className="  text-gray-500 md:text-md dark:text-gray-400">
-                    {articleInfo.author.address}
-                  </dd>
-                </a>
-              </div>
-
-              <div className="flex flex-col p-3">
-                <dt className="mb-1 text-md font-semibold">Content digest</dt>
-                <dd className=" text-gray-500 md:text-md dark:text-gray-400">
-                  3WQQzeEv_UYYJaa…N28pKintdpiH5EA
-                </dd>
               </div>
             </dl>
           </div>

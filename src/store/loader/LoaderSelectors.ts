@@ -33,3 +33,4 @@ export const selectSaveLoading = createIsLoadingSelector('mutate');
 export const selectAuthLoaded = createIsLoadedSelector('auth');
 export const selectArticlesLoading = createIsLoadingSelector('articles');
 export const selectArticleInfoLoading = createIsLoadingSelector('articleInfo');
+export const selectCollectButtonLoading = createIsLoadingSelector('collect');

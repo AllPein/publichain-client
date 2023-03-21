@@ -7,7 +7,7 @@ import { useMount } from '@/hooks/useMount';
 import { ArticleAction } from '@/store/article/ArticleActions';
 import { selectMyArticles } from '@/store/article/ArticleSelectors';
 import { selectArticlesLoading } from '@/store/loader/LoaderSelectors';
-import { ShortArticle } from '@/types/ArticleTypes';
+import { ArticleFilterType, ShortArticle } from '@/types/ArticleTypes';
 
 export const MyArticles = () => {
   const dispatch = useDispatch();
@@ -15,12 +15,17 @@ export const MyArticles = () => {
   const articlesLoading = useSelector(selectArticlesLoading);
 
   useMount(() => {
-    dispatch(ArticleAction.initGetMyArticles());
+    dispatch(
+      ArticleAction.initSearchArticles({
+        searchValue: '',
+        type: ArticleFilterType.My,
+      }),
+    );
   });
 
   return articlesLoading ? (
     <Loader centered />
   ) : (
-    <Articles articles={articles} />
+    <Articles articles={articles} type={ArticleFilterType.My} />
   );
 };

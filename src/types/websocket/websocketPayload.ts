@@ -6,7 +6,7 @@ export type VegaWebSocketPayload = {
   USER_INFO: AccountInfo;
   PUBLISH_RESULT: boolean;
   PUBLISH: null;
-  COLLECT: null;
+  COLLECT: boolean;
   MUTATE: {
     result: boolean;
     internalUrl: string;

@@ -5,6 +5,7 @@ import {
 } from 'axios';
 
 import { AccountInfo, XummWallet } from '@/store/StoreTypes';
+import { ArticleFilterType } from '@/types/ArticleTypes';
 import { XummPkce } from '@/utils/window';
 
 export interface AxiosClient {
@@ -71,6 +72,10 @@ export interface IProjectService {
     network,
   }): Promise<AxiosResponse<any> | { isError: boolean } | null>;
   getArticles(): Promise<AxiosResponse<any>>;
+  searchArticles(
+    searchValue: string,
+    type: ArticleFilterType,
+  ): Promise<AxiosResponse<any>>;
   updateUserInfo({ address, name, bio }): Promise<AxiosResponse<AccountInfo>>;
   getArticleInfo(id: string): Promise<AxiosResponse<any>>;
 }

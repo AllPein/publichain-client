@@ -12,6 +12,9 @@ export const modalStoreInitialState: ModalStore = Object.freeze({
     register: {
       isOpen: false,
     },
+    collectResult: {
+      isOpen: false,
+    },
     nft: {
       isOpen: false,
     },

@@ -7,6 +7,7 @@ export type ModalType =
   | 'login'
   | 'signature'
   | 'nft'
+  | 'collectResult'
   | 'publicationResult';
 
 export type ModalData<T = any> = {
