@@ -6,7 +6,6 @@ import {
 
 import { AccountInfo, XummWallet } from '@/store/StoreTypes';
 import { ArticleFilterType } from '@/types/ArticleTypes';
-import { XummPkce } from '@/utils/window';
 
 export interface AxiosClient {
   init: (baseUrl: string) => void;
@@ -62,8 +61,6 @@ export type LoginRequest = {
 };
 
 export interface IProjectService {
-  client: any;
-  xumm: typeof XummPkce;
   axiosClient: AxiosClient;
 
   getNftInformation({

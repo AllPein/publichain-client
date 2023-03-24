@@ -3,33 +3,17 @@ import { AxiosResponse } from 'axios';
 import { AxiosClient, IProjectService } from '@/services/types';
 import { AccountInfo } from '@/store/StoreTypes';
 import { ArticleFilterType } from '@/types/ArticleTypes';
-import { XummPkce } from '@/utils/window';
 
 class ProjectService implements IProjectService {
-  #client: any;
-
-  #xumm: typeof XummPkce;
-
   // @ts-ignore
   #axiosClient: AxiosClient;
-
-  get client() {
-    return this.#client as any;
-  }
 
   get axiosClient() {
     return this.#axiosClient as AxiosClient;
   }
 
-  get xumm() {
-    return this.#xumm as typeof XummPkce;
-  }
-
-  async init(client, xumm, axiosClient) {
+  async init(axiosClient) {
     this.#axiosClient = axiosClient;
-    this.#client = client;
-    this.#xumm = xumm;
-    await client.connect();
   }
 
   async getArticles(): Promise<AxiosResponse<any>> {

@@ -39,7 +39,7 @@ export const LoginModal: FC = () => {
       size="s"
       onClose={onClose}
       closable
-      title="Connect to Writty"
+      title="Connect to Publichain"
       isOpen={modalData.isOpen}
       footer={null}
     >

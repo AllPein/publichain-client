@@ -57,7 +57,7 @@ export const RegisterModal: FC = () => {
   const body = (
     <div>
       <p className="text-slate-500 text-lg leading-relaxed mt-6">
-        Looks like You are not signed up to Writty yet. Let's change that!
+        Looks like You are not signed up to Publichain yet. Let's change that!
       </p>
       <form className="space-y-8 mt-8" action="#">
         <div>
@@ -103,7 +103,7 @@ export const RegisterModal: FC = () => {
 
   return (
     <Modal
-      title="Sign Up to Writty"
+      title="Sign Up to Publichain"
       size="m"
       onClose={onClose}
       closable

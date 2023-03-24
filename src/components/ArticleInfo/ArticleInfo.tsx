@@ -61,7 +61,7 @@ const classConfig = {
 export const ArticleInfo = ({ accountInfo }) => {
   const dispatch = useDispatch();
 
-  const { speak, speaking, cancel } = useSpeechSynthesis();
+  const { speak, speaking, cancel, supported } = useSpeechSynthesis();
 
   const articleInfo = useSelector(selectArticleInfo);
   const collectButtonLoading = useSelector(selectCollectButtonLoading);
@@ -170,7 +170,7 @@ export const ArticleInfo = ({ accountInfo }) => {
           <p className="text-gray-400 ml-6 font-light">
             {moment(articleInfo.createdAt).format('DD.MM.YYYY')}
           </p>
-          {speakerBlock}
+          {supported && speakerBlock}
           {accountInfo?.address === articleInfo.author.address && (
             <Button
               className="ml-8"

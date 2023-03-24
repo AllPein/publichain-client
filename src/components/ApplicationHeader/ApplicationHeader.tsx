@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Logo from '@/assets/icons/logo.svg';
 import { AccountMenu } from '@/components/AccountMenu/AccountMenu';
 import { ConnectWalletButton } from '@/components/ConnectWalletButton/ConnectWalletButton';
 import { useMount } from '@/hooks/useMount';
@@ -38,10 +39,7 @@ const ApplicationHeader = () => {
             className="cursor-pointer mt-2 mr-2 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mt-0"
             onClick={() => goTo('/explore')}
           >
-            {/* <img src={Logo} style={{ height: '50px' }} alt="" loading="lazy" /> */}
-            <h1 className="font-poppins text-4xl font-extrabold text-indigo-600">
-              Writty
-            </h1>
+            <img src={Logo} style={{ height: '50px' }} alt="" loading="lazy" />
           </a>
         </div>
 
