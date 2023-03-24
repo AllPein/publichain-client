@@ -1,9 +1,6 @@
-import { DEFAULT_BACKEND_PATH } from '@app/constants/WebsocketConstants';
-import { BackendPath } from '@app/types/websocket/websocketPayload';
 import { createSelector } from 'reselect';
 
 import { RootState } from '../StoreTypes';
-
 import { WebsocketReadyState } from './epics/sendWebsocketEpic';
 
 export const selectWebsockets = createSelector(
@@ -11,7 +8,7 @@ export const selectWebsockets = createSelector(
   (websockets) => websockets,
 );
 
-const isWebsocketConnected = (websockets, backendPath: BackendPath) => {
+const isWebsocketConnected = (websockets, backendPath) => {
   return (
     backendPath in websockets &&
     websockets[backendPath]?.readyState === WebsocketReadyState.Open
@@ -20,5 +17,6 @@ const isWebsocketConnected = (websockets, backendPath: BackendPath) => {
 
 export const selectIsMainWebsocketInitialized = createSelector(
   selectWebsockets,
-  (websockets) => isWebsocketConnected(websockets, DEFAULT_BACKEND_PATH),
+  (websockets) =>
+    isWebsocketConnected(websockets, import.meta.env.VITE_BASE_API_URL),
 );

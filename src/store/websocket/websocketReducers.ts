@@ -40,13 +40,15 @@ export const WebsocketReducers = reducerWithInitialState<WebsocketStore>(
   )
   .case(WebsocketAction.resetState, (state): WebsocketStore => {
     /** Нужно не просто сбросить сокеты в сторе, нужно отключить соединение */
-    Object.values(state.instances).forEach((instance: WebSocket | null) => {
-      if (instance) {
-        // eslint-disable-next-line no-param-reassign
-        instance.onclose = () => {};
-        instance.close();
-      }
-    });
+    Object.values(state.instances).forEach(
+      (instance: WebSocket | null | undefined) => {
+        if (instance) {
+          // eslint-disable-next-line no-param-reassign
+          instance.onclose = () => {};
+          instance.close();
+        }
+      },
+    );
 
     return {
       instances: {},
