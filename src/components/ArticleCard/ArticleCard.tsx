@@ -23,7 +23,7 @@ export const ArticleCard = ({
         <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-gray-900">
           {title}
         </h2>
-        <p className="mb-3 text-gray-500">{description}</p>
+        <p className="mb-3 text-gray-500 break-word h-12">{description}</p>
         <div className="flex items-center mt-4">
           <img
             className="w-10 h-10 rounded-full mr-4"

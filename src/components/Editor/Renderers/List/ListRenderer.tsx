@@ -4,7 +4,8 @@ import { RenderFn } from 'editorjs-blocks-react-renderer';
 import HTMLReactParser from 'html-react-parser';
 
 export interface ListBlockData {
-  type: 'ordered' | 'unordered';
+  style: 'ordered' | 'unordered';
+  type?: 'ordered' | 'unordered';
   items: NestedListItem[];
 }
 
@@ -22,7 +23,7 @@ const Group: FC<{
   items: NestedListItem[];
   className?: string;
 }> = ({ Tag, items, ...props }) => (
-  <Tag {...props} className="marker:text-indigo-600 mt-8">
+  <Tag {...props} className="marker:text-indigo-600 mt-4 ml-8">
     {items.map((item, i) => (
       <Bullet key={i}>
         {typeof item === 'string' ? (
@@ -50,7 +51,7 @@ const List: RenderFn<ListBlockData> = ({ data, className = '' }) => {
   }
 
   const Tag = (
-    data?.type === 'ordered' ? `ol` : `ul`
+    data?.style === 'ordered' || data?.type === 'ordered' ? `ol` : `ul`
   ) as keyof JSX.IntrinsicElements;
   return data && <Group Tag={Tag} items={data.items} {...props} />;
 };

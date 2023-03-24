@@ -127,7 +127,7 @@ export const ArticleInfo = ({ accountInfo }) => {
           onClick={() =>
             speak({
               text: textToSpeak,
-              rate: 0.8,
+              rate: 0.85,
             })
           }
         >
@@ -199,6 +199,7 @@ export const ArticleInfo = ({ accountInfo }) => {
             image: Image as any,
             nft: Nft as any,
             warning: Warning,
+            checklist: Checkbox,
             checkbox: Checkbox,
             code: CodeBoxOutput,
           }}

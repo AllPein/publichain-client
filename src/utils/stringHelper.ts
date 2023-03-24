@@ -14,6 +14,7 @@ export function parseArticleDataToSpeechSynthesisText(articleData) {
           block.data.text ||
           block.data.caption ||
           block.type === 'checkbox' ||
+          block.type === 'warning' ||
           block.type === 'nft' ||
           block.type === 'list',
       )
@@ -49,6 +50,10 @@ export function parseArticleDataToSpeechSynthesisText(articleData) {
 
             return mappedItem;
           });
+        }
+
+        if (block.type === 'warning') {
+          return block.data.title?.replace(regex, '');
         }
 
         if (block.data.text) {
