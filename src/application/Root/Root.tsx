@@ -42,11 +42,7 @@ const isLoggedIn = !!localStorage.getItem('token');
 const routes = [
   {
     path: '/create-article',
-    children: isLoggedIn ? (
-      <ModifyArticlePage />
-    ) : (
-      <Redirect to={REDIRECT_PATH} />
-    ),
+    children: <ModifyArticlePage />,
   },
   {
     path: '/article/:articleId',
@@ -58,27 +54,19 @@ const routes = [
   },
   {
     path: '/collected-articles',
-    children: isLoggedIn ? (
-      <CollectedArticlesPage />
-    ) : (
-      <Redirect to={REDIRECT_PATH} />
-    ),
+    children: <CollectedArticlesPage />,
   },
   {
     path: '/my-articles',
-    children: isLoggedIn ? <MyArticlesPage /> : <Redirect to={REDIRECT_PATH} />,
+    children: <MyArticlesPage />,
   },
   {
     path: '/account',
-    children: isLoggedIn ? <AccountPage /> : <Redirect to={REDIRECT_PATH} />,
+    children: <AccountPage />,
   },
   {
     path: '/edit/:articleId',
-    children: isLoggedIn ? (
-      <ModifyArticlePage isEditing={true} />
-    ) : (
-      <Redirect to={REDIRECT_PATH} />
-    ),
+    children: <ModifyArticlePage isEditing={true} />,
   },
 ];
 
