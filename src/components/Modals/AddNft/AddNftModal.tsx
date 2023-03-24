@@ -106,7 +106,7 @@ export const AddNftModal: FC = () => {
       style={{ height: 450 }}
       className="flex overflow-hidden bg-white rounded-lg shadow-lg w-full mt-12"
     >
-      <div className="text-center w-1/2 cursor-pointer bg-white border border-gray-200 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="text-center w-1/2 cursor-pointer bg-white border border-gray-200 rounded-xl shadow">
         {nftInformation?.imageUrl ? (
           <img
             style={{ height: 340 }}
@@ -122,10 +122,10 @@ export const AddNftModal: FC = () => {
           </div>
         )}
         <div className="p-5">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
             {nftInformation?.name || (
               <div role="status" className="w-full animate-pulse">
-                <div className="h-6 bg-gray-200 rounded-full dark:bg-gray-700 mb-4"></div>
+                <div className="h-6 bg-gray-200 rounded-full mb-4"></div>
               </div>
             )}
           </h5>
@@ -134,7 +134,7 @@ export const AddNftModal: FC = () => {
               role="status"
               className="w-full flex justify-center animate-pulse"
             >
-              <div className="h-3 w-48 bg-gray-200 rounded-full dark:bg-gray-700 mb-4"></div>
+              <div className="h-3 w-48 bg-gray-200 rounded-full mb-4"></div>
             </div>
           ) : (
             <a
@@ -151,7 +151,7 @@ export const AddNftModal: FC = () => {
       <div className="py-12 px-6 text-gray-800 flex flex-col justify-between w-1/2">
         <form className="space-y-8" action="#">
           <div>
-            <label className="block my-2 text-base font-medium text-gray-900 dark:text-white">
+            <label className="block my-2 text-base font-medium text-gray-900">
               Network
             </label>
             <Select
@@ -161,7 +161,7 @@ export const AddNftModal: FC = () => {
             />
           </div>
           <div>
-            <label className="block my-2 text-base font-medium text-gray-900 dark:text-white">
+            <label className="block my-2 text-base font-medium text-gray-900">
               Contract Address
             </label>
             <input
@@ -169,13 +169,13 @@ export const AddNftModal: FC = () => {
               name="tokenAddress"
               id="tokenAddress"
               onChange={handleChangeTokenAddress}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="e.g. 0xff9c…13d7"
               required
             />
           </div>
           <div>
-            <label className="block mb-2 text-base font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-base font-medium text-gray-900">
               Token ID
             </label>
             <input
@@ -183,7 +183,7 @@ export const AddNftModal: FC = () => {
               onChange={handleChangeTokenId}
               id="tokenId"
               placeholder="e.g. 420"
-              className="bg-gray-50 border max-h-64 border-gray-300 text-gray-900 text-basae rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="bg-gray-50 border max-h-64 border-gray-300 text-gray-900 text-basae rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
             />
           </div>
         </form>

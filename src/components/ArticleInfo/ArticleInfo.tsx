@@ -53,8 +53,7 @@ const classConfig = {
     },
   },
   quote: {
-    className:
-      'p-4 my-8 border-l-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800',
+    className: 'p-4 my-8 border-l-4 border-gray-300 bg-gray-50',
   },
 };
 
@@ -207,7 +206,7 @@ export const ArticleInfo = ({ accountInfo }) => {
         />
         <div className="pt-32 pb-20">
           <div className="flex justify-center mt-12">
-            <dl className="max-w-lg bg-gray-100 rounded-xl p-4 text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+            <dl className="max-w-lg bg-gray-100 rounded-xl p-4 text-gray-900 divide-y divide-gray-200">
               <div className=" transition ease-in-out duration-150 rounded-md hover:bg-gray-200 flex flex-col pb-3 p-3 cursor-pointer">
                 <a
                   target="_blank"
@@ -220,7 +219,7 @@ export const ArticleInfo = ({ accountInfo }) => {
                     <ArrowTopRightOnSquareIcon className="ml-3 mt-1 w-4 h-4 text-gray-500" />
                   </div>
 
-                  <dd className="text-gray-500 md:text-md dark:text-gray-400 break-word">
+                  <dd className="text-gray-500 md:text-md break-word">
                     {articleInfo.transactionId}
                   </dd>
                 </a>
@@ -237,7 +236,7 @@ export const ArticleInfo = ({ accountInfo }) => {
                     <ArrowTopRightOnSquareIcon className="ml-3 mt-1 w-4 h-4 text-gray-500" />
                   </div>
 
-                  <dd className="  text-gray-500 md:text-md dark:text-gray-400">
+                  <dd className="  text-gray-500 md:text-md">
                     {articleInfo.author.address}
                   </dd>
                 </a>

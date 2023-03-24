@@ -51,7 +51,7 @@ export const AccountPage = () => {
         ) : (
           <div className="w-full flex justify-center">
             <div role="status" className="mt-6 w-64 text-center animate-pulse">
-              <div className="h-6 bg-gray-200 rounded-md dark:bg-gray-700 mb-2"></div>
+              <div className="h-6 bg-gray-200 rounded-md mb-2"></div>
             </div>
           </div>
         )}
@@ -60,7 +60,7 @@ export const AccountPage = () => {
         </span>
         <form className="space-y-8 mt-8 px-12 text-left">
           <div>
-            <label className="block my-4 text-lg font-normal text-gray-900 dark:text-white">
+            <label className="block my-4 text-lg font-normal text-gray-900">
               Your full name
             </label>
             <input
@@ -69,13 +69,13 @@ export const AccountPage = () => {
               value={name}
               onChange={handleChangeName}
               id="name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Jane Doe"
               required
             />
           </div>
           <div className="mt-12">
-            <label className="block mb-4 text-lg font-normal text-gray-900 dark:text-white">
+            <label className="block mb-4 text-lg font-normal text-gray-900">
               Tell everyone about yourself
             </label>
             <textarea
@@ -84,7 +84,7 @@ export const AccountPage = () => {
               name="description"
               id="description"
               placeholder="Your bio here"
-              className="bg-gray-50 border max-h-32 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              className="bg-gray-50 border max-h-32 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />
           </div>
         </form>

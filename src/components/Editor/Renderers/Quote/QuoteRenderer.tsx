@@ -56,7 +56,7 @@ const Quote: RenderFn<QuoteBlockData, QuoteBlockConfig> = ({
               </p>
             ))}
         <div className="mt-3">
-          <cite className="text-sm font-light text-gray-500 dark:text-gray-400">
+          <cite className="text-sm font-light text-gray-500">
             ~ {data?.caption && HTMLReactParser(data.caption)}
           </cite>
         </div>

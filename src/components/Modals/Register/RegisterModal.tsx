@@ -61,7 +61,7 @@ export const RegisterModal: FC = () => {
       </p>
       <form className="space-y-8 mt-8" action="#">
         <div>
-          <label className="block my-2 text-lg font-medium text-gray-900 dark:text-white">
+          <label className="block my-2 text-lg font-medium text-gray-900">
             Your full name
           </label>
           <input
@@ -69,13 +69,13 @@ export const RegisterModal: FC = () => {
             name="name"
             id="name"
             onChange={handleChangeName}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="Jane Doe"
             required
           />
         </div>
         <div>
-          <label className="block mb-2 text-lg font-medium text-gray-900 dark:text-white">
+          <label className="block mb-2 text-lg font-medium text-gray-900">
             Tell everyone about yourself
           </label>
           <textarea
@@ -84,7 +84,7 @@ export const RegisterModal: FC = () => {
             onChange={handleChangeBio}
             id="description"
             placeholder="Your bio here"
-            className="bg-gray-50 border max-h-64 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+            className="bg-gray-50 border max-h-64 border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           />
         </div>
       </form>
@@ -95,7 +95,7 @@ export const RegisterModal: FC = () => {
     <button
       type="button"
       onClick={onConfirm}
-      className="text-white mt-4 bg-indigo-600 hover:bg-indigo-500  focus:outline-none font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      className="text-white mt-4 bg-indigo-600 hover:bg-indigo-500  focus:outline-none font-medium rounded-lg text-lg px-5 py-2.5 text-center"
     >
       Create account
     </button>

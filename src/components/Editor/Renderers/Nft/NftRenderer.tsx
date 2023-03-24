@@ -17,7 +17,7 @@ type NftProps = {
 export const Nft: FC<NftProps> = ({ data }) => {
   return (
     <div className="w-full flex justify-center my-12">
-      <div className="text-center max-w-sm bg-white border border-gray-200 rounded-xl shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="text-center max-w-sm bg-white border border-gray-200 rounded-xl shadow">
         {data?.imageUrl ? (
           <img
             className="rounded-t-xl"
@@ -33,7 +33,7 @@ export const Nft: FC<NftProps> = ({ data }) => {
           </div>
         )}
         <div className="p-5">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
             {data.name}
           </h5>
           <a

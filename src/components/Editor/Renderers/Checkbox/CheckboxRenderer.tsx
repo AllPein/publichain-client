@@ -9,10 +9,10 @@ export const Checkbox = ({ data }) => {
             checked={item.checked}
             readOnly
             type="checkbox"
-            className="w-4 h-4 text-blue-600 bg-gray-100 rounded dark:bg-gray-700"
+            className="w-4 h-4 text-blue-600 bg-gray-100 rounded"
           />
 
-          <label className="ml-4 text-lg font-light text-gray-900 dark:text-gray-300">
+          <label className="ml-4 text-lg font-light text-gray-900">
             {item.text}
           </label>
         </div>
