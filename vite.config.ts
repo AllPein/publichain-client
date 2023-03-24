@@ -8,12 +8,18 @@ export default defineConfig({
   server: {
     port: 5174,
   },
+  build: {
+    outDir: path.join(__dirname, 'dist'),
+    rollupOptions: {
+      output: {
+        dir: 'dist',
+      },
+    },
+  },
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
   define: {
-    // By default, Vite doesn't include shims for NodeJS/
-    // necessary for segment analytics lib to work
-    global: {},
+    global: '({})',
   },
 });

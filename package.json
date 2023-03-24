@@ -21,7 +21,6 @@
     "@editorjs/warning": "^1.3.0",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
-    "antd": "^5.2.2",
     "autoprefixer": "^10.4.13",
     "axios": "^1.3.4",
     "connected-react-router": "^6.9.3",
