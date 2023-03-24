@@ -1,4 +1,3 @@
-import { notification } from 'antd';
 import { AnyAction, Dispatch } from 'redux';
 import { v4 as uuid } from 'uuid';
 
@@ -95,14 +94,7 @@ export async function createWebsocket({
     const errorPayload = payload.data as WebsocketError;
 
     /** Если пришла ошибка - выводим её */
-    if (errorPayload !== null && errorPayload?.error) {
-      notification.open({
-        message: 'Error',
-        type: 'error',
-        description: errorPayload.error.message,
-        duration: 3,
-      });
-    } else {
+    if (errorPayload === null || !errorPayload?.error) {
       dispatch(WebsocketAction.handleMessage(JSON.parse(event.data)));
     }
 
